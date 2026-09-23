@@ -34,3 +34,4 @@ pnpm-debug.log*
 # Local reference drafts
 reference-v4*.html
 thakur-ji-storytelling-v4.html
+.vercel
