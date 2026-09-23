@@ -1,0 +1,145 @@
+---
+import { property } from '../data/property';
+---
+
+<section class="closing-story" id="book" style="--closing-image: url('/images/deluxe-room.webp'), url('/images/deluxe-room.jpg');">
+  <div class="closing-overlay"></div>
+  
+  <div class="inner reveal">
+    <div class="story-marker dark">Final chapter · Your stay</div>
+    
+    <div class="closing-eyebrow">The end of the page, not the journey</div>
+    
+    <h2 class="closing-title">
+      Come for Kashi.<br />
+      <em>Stay for comfort.</em>
+    </h2>
+
+    <p class="closing-copy">
+      Thakur Ji Guest House becomes the quiet chapter between the moments you came to Varanasi to experience — the temple darshan, the evening aarti, the dawn boat ride, the family moments and the contemplative walk through sacred Kashi.
+    </p>
+
+    <div class="closing-actions">
+      <button class="btn primary open-booking-btn" type="button">
+        Book your stay ✦
+      </button>
+      <a 
+        href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House!%20I%20would%20like%20to%20plan%20my%20stay%20in%20Varanasi.`} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn ghost"
+      >
+        Ask on WhatsApp
+      </a>
+    </div>
+
+    <div class="closing-devanagari" aria-label="Atithi Devo Bhava, Har Har Mahadev">
+      अतिथि देवो भवः · हर हर महादेव
+    </div>
+  </div>
+</section>
+
+<style>
+.closing-story {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: #1d080a;
+  color: #fff2dc;
+  isolation: isolate;
+}
+
+.closing-story::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--closing-image);
+  background-size: cover;
+  background-position: center 40%;
+  filter: saturate(0.75);
+  transform: scale(1.03);
+  z-index: 1;
+}
+
+.closing-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 5, 7, 0.72) 0%, rgba(20, 5, 7, 0.86) 60%, rgba(29, 8, 10, 0.96) 100%);
+  z-index: 2;
+}
+
+.inner {
+  position: relative;
+  z-index: 3;
+  width: min(880px, 90vw);
+  padding: 100px 0;
+  margin: 0 auto;
+}
+
+.closing-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #dfb968;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.closing-title {
+  font: 600 clamp(54px, 7vw, 104px) / 0.88 var(--font-serif);
+  margin: 0;
+  letter-spacing: -1.5px;
+  color: #ffffff;
+}
+
+.closing-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: #edcf87;
+}
+
+.closing-copy {
+  max-width: 680px;
+  margin: 24px auto 36px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #e4d1bf;
+}
+
+.closing-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.closing-devanagari {
+  font-family: var(--font-devanagari);
+  font-weight: 600;
+  font-size: 20px;
+  color: #e2bd6c;
+  margin-top: 40px;
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 680px) {
+  .inner {
+    padding: 70px 0;
+  }
+  .closing-title {
+    font-size: clamp(44px, 11vw, 62px);
+    line-height: 0.92;
+  }
+  .closing-copy {
+    font-size: 13.5px;
+  }
+  .closing-devanagari {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+}
+</style>

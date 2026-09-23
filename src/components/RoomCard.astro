@@ -1,0 +1,242 @@
+---
+import type { Room } from '../data/property';
+
+interface Props {
+  room: Room;
+  index: number;
+}
+
+const { room, index } = Astro.props;
+---
+
+<article class="room-card reveal" data-room-id={room.id}>
+  <picture class="room-media">
+    <source srcset={room.imageWebp} type="image/webp" />
+    <img 
+      src={room.image} 
+      alt={`${room.name} at Thakur Ji Guest House Varanasi`} 
+      loading="lazy" 
+      width="1418" 
+      height="1064"
+    />
+  </picture>
+
+  <div class="room-gradient"></div>
+
+  <div class="room-info">
+    <div class="room-no">{room.tagline}</div>
+    <h3 class="room-name">{room.name}</h3>
+    
+    <div class="room-meta">
+      {room.features.map(f => (
+        <span class="meta-tag">{f}</span>
+      ))}
+    </div>
+
+    {room.description && (
+      <p class="room-desc">{room.description}</p>
+    )}
+
+    <button 
+      class="room-cta-btn open-booking-btn" 
+      type="button" 
+      data-room={room.name} 
+      aria-label={`Enquire about ${room.name}`}
+    >
+      Enquire Now · Book Stay
+    </button>
+  </div>
+
+  <button 
+    class="room-arrow open-booking-btn" 
+    type="button" 
+    data-room={room.name}
+    aria-label={`Book ${room.name}`}
+  >
+    ↗
+  </button>
+
+  {index === 0 && (
+    <div class="pattern-corner" aria-hidden="true">
+      <svg viewBox="0 0 100 100" focusable="false">
+        <path d="M50 8c0 24 18 42 42 42-24 0-42 18-42 42 0-24-18-42-42-42 24 0 42-18 42-42Z" />
+      </svg>
+    </div>
+  )}
+</article>
+
+<style>
+.room-card {
+  position: relative;
+  min-height: 540px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(47, 23, 16, 0.12);
+  background: #20080a;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 40px 100px rgba(47, 23, 16, 0.22);
+}
+
+.room-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.room-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.room-card:hover .room-media img {
+  transform: scale(1.06);
+}
+
+.room-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 32%, rgba(20, 6, 7, 0.72) 65%, rgba(20, 6, 7, 0.94) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.room-info {
+  position: relative;
+  z-index: 3;
+  padding: 32px 30px 28px;
+  color: #fff8eb;
+}
+
+.room-no {
+  font-size: 9.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #e5c171;
+  font-weight: 700;
+}
+
+.room-name {
+  font: 600 38px/1.1 var(--font-serif);
+  margin: 6px 0 10px;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.room-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 9.5px;
+  color: #ead9c2;
+  margin-bottom: 12px;
+}
+
+.meta-tag {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-weight: 600;
+}
+
+.room-desc {
+  margin: 10px 0 18px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #f2e6d2;
+  max-width: 86%;
+}
+
+.room-cta-btn {
+  background: transparent;
+  border: 1px solid rgba(231, 197, 122, 0.5);
+  color: #faeed7;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+
+.room-cta-btn:hover {
+  background: #b9893f;
+  color: #1d080a;
+  border-color: #b9893f;
+}
+
+.room-arrow {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 228, 177, 0.66);
+  background: rgba(24, 7, 9, 0.4);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  z-index: 4;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.room-card:hover .room-arrow {
+  background: #efcd86;
+  color: #5b1118;
+  border-color: #efcd86;
+  transform: rotate(-10deg) scale(1.08);
+}
+
+.pattern-corner {
+  position: absolute;
+  inset: auto 18px 18px auto;
+  z-index: 3;
+  width: 84px;
+  height: 84px;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.pattern-corner svg {
+  width: 100%;
+  height: 100%;
+}
+
+.pattern-corner path {
+  stroke: #fff1d1;
+  fill: none;
+  stroke-width: 1;
+}
+
+@media (max-width: 680px) {
+  .room-card {
+    min-height: 440px !important;
+  }
+  .room-name {
+    font-size: 32px;
+  }
+  .room-info {
+    padding: 22px 20px;
+  }
+  .room-desc {
+    max-width: 100%;
+    font-size: 11.5px;
+  }
+}
+</style>

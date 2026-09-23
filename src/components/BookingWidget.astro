@@ -1,0 +1,261 @@
+---
+import { property } from '../data/property';
+import { Check } from 'lucide-astro';
+---
+
+<div class="booking reveal" id="bookingWidget">
+  <span class="booking-tag">Direct stay enquiry</span>
+  <h3 class="booking-title">Plan your stay</h3>
+  <p class="booking-desc">Choose your dates and make Thakur Ji your base for experiencing Varanasi.</p>
+
+  <form id="heroBookingForm" class="booking-form">
+    <div class="grid2">
+      <div class="field">
+        <label for="checkinDate">Check in</label>
+        <input type="date" id="checkinDate" name="checkIn" required />
+      </div>
+      <div class="field">
+        <label for="checkoutDate">Check out</label>
+        <input type="date" id="checkoutDate" name="checkOut" required />
+      </div>
+    </div>
+
+    <div class="field" style="margin-top: 10px;">
+      <label for="guestCount">Guests & Rooms</label>
+      <select id="guestCount" name="guests">
+        <option value="2 Guests (Deluxe / Premium)">2 Guests · Deluxe or Premium</option>
+        <option value="1 Guest (Single / Solo)">1 Guest · Solo Traveller</option>
+        <option value="3 Guests (Family / Triple)">3 Guests · Extra Bed</option>
+        <option value="4+ Guests (Family Room / Group)">4+ Guests · Family Suite</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn primary booking-submit-btn">
+      <span>Check availability ✦</span>
+    </button>
+  </form>
+
+  <div class="booking-foot">
+    <div>
+      <span class="check-icon">
+        <Check size={14} strokeWidth={2.5} />
+      </span>
+      <b>Direct contact</b>
+      <small>Speak with host</small>
+    </div>
+    <div>
+      <span class="check-icon">
+        <Check size={14} strokeWidth={2.5} />
+      </span>
+      <b>Flexible support</b>
+      <small>Ghat & trip advice</small>
+    </div>
+    <div>
+      <span class="check-icon">
+        <Check size={14} strokeWidth={2.5} />
+      </span>
+      <b>Warm welcome</b>
+      <small>True Kashi hospitality</small>
+    </div>
+  </div>
+</div>
+
+<style>
+.booking {
+  background: rgba(255, 249, 239, 0.95);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(224, 190, 115, 0.52);
+  border-radius: 30px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(25, 7, 8, 0.38);
+  isolation: isolate;
+}
+
+.booking::before {
+  content: "";
+  position: absolute;
+  right: -90px;
+  top: -90px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 1px solid rgba(185, 137, 63, 0.18);
+  box-shadow: 0 0 0 16px rgba(185, 137, 63, 0.05), 0 0 0 38px rgba(185, 137, 63, 0.03);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.booking-tag {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a47d42;
+  font-weight: 700;
+}
+
+.booking-title {
+  margin: 6px 0 6px;
+  font: 700 40px/1 var(--font-serif);
+  color: var(--wine);
+  letter-spacing: -0.5px;
+}
+
+.booking-desc {
+  margin: 0 0 18px;
+  font-size: 12px;
+  color: #7a6660;
+  line-height: 1.6;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field label {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  color: #73584d;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 13px 12px;
+  border: 1px solid #e7dbc8;
+  border-radius: 12px;
+  background: #fffdf9;
+  color: #4f3832;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #b9893f;
+  box-shadow: 0 0 0 3px rgba(185, 137, 63, 0.15);
+}
+
+.booking-submit-btn {
+  width: 100%;
+  border-radius: 14px;
+  margin-top: 16px;
+  padding: 16px;
+  font-size: 13px;
+}
+
+.booking-foot {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #eadfce;
+}
+
+.booking-foot div {
+  text-align: center;
+  font-size: 9px;
+  color: #7a655c;
+  border-right: 1px solid #eadfce;
+  padding: 0 4px;
+}
+
+.booking-foot div:last-child {
+  border-right: 0;
+}
+
+.check-icon {
+  color: #25833e;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.booking-foot b {
+  display: block;
+  color: #4d342d;
+  font-size: 9.5px;
+}
+
+.booking-foot small {
+  display: block;
+  color: #8c7368;
+  font-size: 8px;
+  margin-top: 2px;
+}
+
+@media (max-width: 680px) {
+  .booking {
+    border-radius: 22px;
+    padding: 22px;
+  }
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+  .booking-title {
+    font-size: 32px;
+  }
+}
+</style>
+
+<script>
+  // Set default dates: check-in tomorrow, check-out day after tomorrow
+  const checkinInput = document.getElementById('checkinDate') as HTMLInputElement | null;
+  const checkoutInput = document.getElementById('checkoutDate') as HTMLInputElement | null;
+
+  if (checkinInput && checkoutInput) {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const dayAfter = new Date(today);
+    dayAfter.setDate(today.getDate() + 2);
+
+    const formatDate = (d: Date) => d.toISOString().split('T')[0];
+    
+    checkinInput.min = formatDate(today);
+    checkinInput.value = formatDate(tomorrow);
+    
+    checkoutInput.min = formatDate(tomorrow);
+    checkoutInput.value = formatDate(dayAfter);
+
+    checkinInput.addEventListener('change', () => {
+      if (checkinInput.value) {
+        const nextDay = new Date(checkinInput.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        checkoutInput.min = formatDate(nextDay);
+        if (checkoutInput.value <= checkinInput.value) {
+          checkoutInput.value = formatDate(nextDay);
+        }
+      }
+    });
+  }
+
+  // Handle booking form submission -> Opens WhatsApp with prefilled message
+  const bookingForm = document.getElementById('heroBookingForm');
+  bookingForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const checkIn = (document.getElementById('checkinDate') as HTMLInputElement)?.value || '';
+    const checkOut = (document.getElementById('checkoutDate') as HTMLInputElement)?.value || '';
+    const guests = (document.getElementById('guestCount') as HTMLSelectElement)?.value || '2 Guests';
+
+    const message = `Hello Thakur Ji Guest House! I would like to check room availability for my visit to Varanasi:\n- Check-in: ${checkIn}\n- Check-out: ${checkOut}\n- Guests & Preference: ${guests}\n\nPlease share your available rooms and rates. Thank you!`;
+    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  });
+</script>

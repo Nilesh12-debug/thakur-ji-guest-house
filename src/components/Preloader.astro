@@ -1,0 +1,113 @@
+---
+// Preloader component with gentle floating diya and gold loading progress
+---
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-diya" role="img" aria-label="Diya lamp">🪔</div>
+    <h2 class="loader-name">Thakur Ji Guest House</h2>
+    <div class="loader-sub">काशी · अतिथि देवो भवः</div>
+    <div class="loader-line"><span></span></div>
+  </div>
+</div>
+
+<style>
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(circle at 50% 45%, #421215, #1b0608 72%);
+  display: grid;
+  place-items: center;
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.75s ease;
+  pointer-events: all;
+}
+
+.loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-inner {
+  text-align: center;
+  color: #faeed9;
+  padding: 20px;
+}
+
+.loader-diya {
+  font-size: 46px;
+  filter: drop-shadow(0 0 18px #f0bd5c);
+  animation: diyaFloat 2.2s ease-in-out infinite;
+}
+
+.loader-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 44px);
+  line-height: 1;
+  margin: 18px 0 0;
+  letter-spacing: -0.5px;
+  color: #fff4e4;
+}
+
+.loader-sub {
+  font-family: var(--font-devanagari);
+  font-weight: 500;
+  font-size: 14px;
+  color: #debb69;
+  letter-spacing: 2.2px;
+  margin-top: 8px;
+}
+
+.loader-line {
+  width: 220px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 24px auto 0;
+  overflow: hidden;
+  border-radius: 99px;
+}
+
+.loader-line span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, #ebc56a, transparent);
+  animation: load 1s linear infinite;
+}
+
+@keyframes load {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+@keyframes diyaFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('hide');
+      }
+    }, 750);
+  });
+</script>

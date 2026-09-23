@@ -1,23 +1,157 @@
+---
+import '../styles/global.css';
+import { property } from '../data/property';
+import Preloader from '../components/Preloader.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import BookingModal from '../components/BookingModal.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Thakur Ji Guest House Varanasi | Comfortable Stay in Varanasi",
+  description = "Thakur Ji Guest House in Varanasi offers clean, quiet, and comfortable rooms for pilgrims, couples, families, and travellers visiting the spiritual heart of Kashi.",
+  ogImage = "/images/deluxe-room.jpg"
+} = Astro.props;
+
+// Truthful Schema.org LodgingBusiness metadata (only verified attributes)
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": property.name,
+  "legalName": property.legalName,
+  "description": property.description,
+  "url": "https://thakurjiguesthouse.in",
+  "telephone": property.phone,
+  "image": [
+    "https://thakurjiguesthouse.in/images/deluxe-room.jpg",
+    "https://thakurjiguesthouse.in/images/premium-room.jpg",
+    "https://thakurjiguesthouse.in/images/family-room.jpg",
+    "https://thakurjiguesthouse.in/images/reception.jpg"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": property.city,
+    "addressRegion": property.state,
+    "addressCountry": property.country,
+    "postalCode": property.pincode
+  },
+  "checkinTime": property.checkIn,
+  "checkoutTime": property.checkOut,
+  "amenityFeature": property.amenities.map(a => ({
+    "@type": "LocationFeatureSpecification",
+    "name": a.name,
+    "value": true
+  }))
+};
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#561018" />
+    <link rel="canonical" href="https://thakurjiguesthouse.in" />
+
+    <!-- Google Fonts Preconnect & Optimized Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thakurjiguesthouse.in" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://thakurjiguesthouse.in" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </head>
+  <body>
+    <!-- Premium Preloader -->
+    <Preloader />
+
+    <!-- Floating Glassmorphic Navbar -->
+    <Navbar />
+
+    <!-- Main Page Content -->
+    <slot />
+
+    <!-- Closing Footer -->
+    <Footer />
+
+    <!-- Floating Quick WhatsApp Button -->
+    <FloatingWhatsApp />
+
+    <!-- Interactive Booking Enquiry Modal -->
+    <BookingModal />
+
+    <!-- Global Lightweight Animation and Parallax Observer -->
+    <script>
+      // Intersection Observer for .reveal and .reveal-left classes
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.reveal, .reveal-left').forEach((el) => {
+        revealObserver.observe(el);
+      });
+
+      // Smooth Parallax for Hero & Reception photos
+      const heroParallax = document.getElementById('heroParallax');
+      const storyParallax = document.getElementById('storyParallax');
+
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+
+        // Hero parallax
+        if (heroParallax && y < window.innerHeight * 1.5) {
+          heroParallax.style.transform = `scale(1.04) translateY(${y * 0.065}px)`;
+          heroParallax.style.backgroundPosition = `center calc(46% + ${y * 0.03}px)`;
+        }
+
+        // Story Reception Parallax
+        if (storyParallax) {
+          const rect = storyParallax.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+            storyParallax.style.transform = `translateY(${(progress - 0.5) * 32}px) scale(1.03)`;
+          }
+        }
+      }, { passive: true });
+    </script>
+  </body>
+</html>

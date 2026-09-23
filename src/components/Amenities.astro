@@ -1,0 +1,134 @@
+---
+import { property } from '../data/property';
+import { Wifi, Snowflake, Users, BellRing, Sparkles, BedDouble } from 'lucide-astro';
+
+const iconMap: Record<string, any> = {
+  wifi: Wifi,
+  ac: Snowflake,
+  family: Users,
+  assistance: BellRing,
+  housekeeping: Sparkles,
+  comfort: BedDouble
+};
+---
+
+<section class="section amenities-section" id="amenities">
+  <div class="container">
+    <div class="section-top reveal">
+      <div>
+        <div class="story-marker">Chapter 04 · What You Return To</div>
+        <div class="eyebrow">The practical promise</div>
+        <h2>The best part of a long Varanasi day? Knowing where you’re coming back to.</h2>
+        <p class="lead">
+          Our amenities answer the quiet essentials every traveller looks for: Will I be cool and comfortable? Can my family rest together peacefully? Can I rely on clean spaces and genuine local help?
+        </p>
+      </div>
+    </div>
+
+    <!-- 6 Verified Amenities Grid with Lucide Icons -->
+    <div class="amenities-grid">
+      {property.amenities.map((item) => {
+        const IconComponent = iconMap[item.id] || Sparkles;
+        return (
+          <div class="amenity-card reveal">
+            <div class="amenity-icon-circle" aria-hidden="true">
+              <IconComponent size={22} strokeWidth={1.75} />
+            </div>
+            <h3 class="amenity-title">{item.name}</h3>
+            <p class="amenity-desc">{item.description}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+.amenities-section {
+  padding-top: 60px;
+  padding-bottom: 110px;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.amenity-card {
+  padding: 30px 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(145, 101, 65, 0.14);
+  background: rgba(255, 250, 243, 0.72);
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.02);
+}
+
+.amenity-card:hover {
+  background: #fffdf9;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 38px rgba(67, 36, 19, 0.08);
+  border-color: rgba(185, 137, 63, 0.4);
+}
+
+.amenity-icon-circle {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #c7984f;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  color: #671019;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.amenity-card:hover .amenity-icon-circle {
+  transform: scale(1.1);
+  background: #fbf0df;
+}
+
+.amenity-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #3b1f1a;
+  margin: 0 0 6px;
+}
+
+.amenity-desc {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #836d64;
+}
+
+@media (max-width: 1100px) {
+  .amenities-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 680px) {
+  .amenities-section {
+    padding-top: 40px;
+    padding-bottom: 70px;
+  }
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .amenity-card {
+    padding: 22px 12px;
+  }
+  .amenity-title {
+    font-size: 11.5px;
+  }
+  .amenity-desc {
+    font-size: 9px;
+  }
+}
+</style>

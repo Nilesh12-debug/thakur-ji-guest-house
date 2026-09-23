@@ -1,0 +1,241 @@
+---
+import { property } from '../data/property';
+import { Phone, MessageCircle, Mail, MapPin } from 'lucide-astro';
+---
+
+<footer class="footer" role="contentinfo">
+  <!-- Subtle Line-Art Varanasi Ghat Silhouette in Background -->
+  <svg class="footer-ghat" viewBox="0 0 700 300" aria-hidden="true" focusable="false">
+    <path d="M0 270h700M20 260v-80h55v80M48 180v-65M35 115h26M110 260v-130h85v130M135 130V80h35v50M152 80V28M145 28h14M235 260v-95h60v95M265 165v-50M255 115h20M330 260v-150h95v150M360 110V64h36v46M378 64V18M370 18h16M465 260v-90h68v90M500 170v-60M490 110h20M565 260v-125h85v125M595 135V85h30v50M610 85V34M602 34h16" />
+  </svg>
+
+  <div class="container footer-container">
+    <div class="footer-grid">
+      <!-- Col 1: Identity & Soul -->
+      <div class="footer-col">
+        <h3 class="footer-name">Thakur Ji Guest House</h3>
+        <div class="footer-tag">Varanasi · Uttar Pradesh</div>
+        <p class="footer-p">
+          A calm, comfortable guest house designed around the living spirit of Varanasi. An honest sanctuary to rest between morning aartis, temple walks, and timeless ghats.
+        </p>
+      </div>
+
+      <!-- Col 2: Direct Contact with Lucide Icons -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Direct Contact</h4>
+        <div class="contact-links">
+          <a href={`tel:${property.phone}`} class="contact-item">
+            <span class="icon">
+              <Phone size={15} strokeWidth={2} />
+            </span>
+            <span>{property.phoneDisplay}</span>
+          </a>
+          <a href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House`} target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span class="icon">
+              <MessageCircle size={15} strokeWidth={2} />
+            </span>
+            <span>WhatsApp Enquiry</span>
+          </a>
+          <a href={`mailto:${property.email}`} class="contact-item">
+            <span class="icon">
+              <Mail size={15} strokeWidth={2} />
+            </span>
+            <span>{property.email}</span>
+          </a>
+          <span class="contact-item">
+            <span class="icon">
+              <MapPin size={15} strokeWidth={2} />
+            </span>
+            <span>{property.address}</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Col 3: Navigation -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Navigation</h4>
+        <div class="footer-nav-links">
+          <a href="#home">Home</a>
+          <a href="#story">Why Stay (Chapter 01)</a>
+          <a href="#why-thakur-ji">Comfort Promise (Chapter 02)</a>
+          <a href="#rooms">Rooms & Accommodations (Chapter 03)</a>
+          <a href="#amenities">Verified Amenities (Chapter 04)</a>
+          <a href="#gallery">Property Gallery</a>
+          <a href="#location">Experience Kashi</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-line"></div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        © {new Date().getFullYear()} Thakur Ji Guest House · Varanasi, Uttar Pradesh, India.
+      </div>
+      <div class="devanagari-blessing">
+        अतिथि देवो भवः · हर हर महादेव
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  position: relative;
+  background: #1d080a;
+  color: #ead7b7;
+  padding: 80px 0 32px;
+  overflow: hidden;
+  border-top: 1px solid rgba(185, 137, 63, 0.25);
+  isolation: isolate;
+}
+
+.footer-ghat {
+  position: absolute;
+  right: -30px;
+  bottom: 0;
+  width: 580px;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer-ghat path {
+  stroke: #f2d090;
+  fill: none;
+  stroke-width: 1.1;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  gap: 50px;
+}
+
+.footer-name {
+  font: 600 42px / 1 var(--font-serif);
+  color: #fff1d8;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.footer-tag {
+  font-size: 9.5px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #d0a95d;
+  margin: 8px 0 16px;
+  font-weight: 700;
+}
+
+.footer-p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #c9b49e;
+  max-width: 440px;
+  margin: 0;
+}
+
+.footer-heading {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #e2be6d;
+  margin: 0 0 18px;
+  font-weight: 800;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #d8c2aa;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.contact-item:hover {
+  color: #ffd685;
+  transform: translateX(3px);
+}
+
+.contact-item .icon {
+  font-size: 14px;
+}
+
+.footer-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav-links a {
+  font-size: 13px;
+  color: #d8c2aa;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.footer-nav-links a:hover {
+  color: #ffd685;
+  transform: translateX(4px);
+}
+
+.footer-line {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 48px 0 24px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: #9f8772;
+  gap: 20px;
+}
+
+.devanagari-blessing {
+  font-family: var(--font-devanagari);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #d9b15d;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .footer-ghat {
+    width: 380px;
+  }
+}
+
+@media (max-width: 680px) {
+  .footer {
+    padding: 60px 0 28px;
+  }
+  .footer-name {
+    font-size: 34px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+</style>

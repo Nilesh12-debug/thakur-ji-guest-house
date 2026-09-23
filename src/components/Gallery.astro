@@ -1,0 +1,166 @@
+---
+// Section 16: Editorial Staggered Gallery Ribbon
+---
+
+<section class="gallery-ribbon" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <div class="story-marker">Property Visuals</div>
+      <div class="eyebrow">Real spaces · Authentic photography</div>
+      <h2>Inside Thakur Ji Guest House</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <!-- Figure 1: Premium Room -->
+      <figure class="gallery-item reveal">
+        <picture>
+          <source srcset="/images/premium-room.webp" type="image/webp" />
+          <img 
+            src="/images/premium-room.jpg" 
+            alt="Premium Room private resting comfort at Thakur Ji Guest House" 
+            loading="lazy" 
+            width="1418" 
+            height="1126"
+          />
+        </picture>
+        <figcaption>Quiet private comfort · The pause after the city</figcaption>
+      </figure>
+
+      <!-- Figure 2: Family Room (Taller Centerpiece) -->
+      <figure class="gallery-item mid reveal">
+        <picture>
+          <source srcset="/images/family-room.webp" type="image/webp" />
+          <img 
+            src="/images/family-room.jpg" 
+            alt="Family Room multi-bed layout at Thakur Ji Guest House" 
+            loading="lazy" 
+            width="1418" 
+            height="1068"
+          />
+        </picture>
+        <figcaption>Space for families & groups · Stay together</figcaption>
+      </figure>
+
+      <!-- Figure 3: Reception / Arrival -->
+      <figure class="gallery-item reveal">
+        <picture>
+          <source srcset="/images/reception.webp" type="image/webp" />
+          <img 
+            src="/images/reception.jpg" 
+            alt="Warm reception arrival at Thakur Ji Guest House Varanasi" 
+            loading="lazy" 
+            width="1418" 
+            height="944"
+          />
+        </picture>
+        <figcaption>A warm arrival in Kashi · True local hospitality</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+.gallery-ribbon {
+  padding: 40px 0 120px;
+}
+
+.gallery-header {
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.gallery-header h2 {
+  margin: 6px 0 0;
+  font: 600 clamp(38px, 4.5vw, 64px) / 1 var(--font-serif);
+  color: #5d1118;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.94fr 1fr;
+  gap: 18px;
+  align-items: end;
+}
+
+.gallery-item {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  box-shadow: 0 30px 90px rgba(47, 23, 16, 0.14);
+  height: 440px;
+  background: #20080a;
+}
+
+.gallery-item.mid {
+  height: 520px;
+  transform: translateY(22px);
+}
+
+.gallery-item picture,
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-item figcaption {
+  position: absolute;
+  inset: auto 18px 18px;
+  background: rgba(26, 7, 9, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(242, 211, 147, 0.25);
+  padding: 14px 18px;
+  border-radius: 16px;
+  color: #fff3df;
+  font: 600 14px var(--font-serif);
+  letter-spacing: 0.3px;
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.gallery-item:hover figcaption {
+  background: rgba(26, 7, 9, 0.82);
+  border-color: rgba(242, 211, 147, 0.5);
+}
+
+@media (max-width: 1100px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery-item.mid {
+    transform: none;
+    height: 380px;
+    grid-column: span 2;
+  }
+  .gallery-item {
+    height: 380px;
+  }
+}
+
+@media (max-width: 680px) {
+  .gallery-ribbon {
+    padding: 20px 0 80px;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .gallery-item,
+  .gallery-item.mid {
+    height: 320px;
+    grid-column: auto;
+    border-radius: 22px;
+  }
+  .gallery-item figcaption {
+    font-size: 12.5px;
+    padding: 10px 14px;
+  }
+}
+</style>

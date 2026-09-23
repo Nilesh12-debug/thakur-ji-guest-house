@@ -1,11 +1,50 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import ArrivalStory from '../components/ArrivalStory.astro';
+import WhyThakurJi from '../components/WhyThakurJi.astro';
+import RoomsSection from '../components/RoomsSection.astro';
+import PromiseSection from '../components/PromiseSection.astro';
+import Amenities from '../components/Amenities.astro';
+import Gallery from '../components/Gallery.astro';
+import KashiExperience from '../components/KashiExperience.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Thakur Ji Guest House Varanasi | Comfortable Stay in Varanasi"
+  description="A comfortable stay designed around the experience of Kashi. Clean, quiet rooms, air conditioning, and warm local hospitality for pilgrims, families, and travellers."
+>
+  <main id="main-content">
+    <!-- Viewport Hero with Deluxe Room Photo & Booking Widget -->
+    <Hero />
+
+    <!-- Cultural Strip Marquee -->
+    <Marquee />
+
+    <!-- Story Chapter 01: Arrival (Varanasi can be intense. Your stay shouldn't be.) -->
+    <ArrivalStory />
+
+    <!-- Story Chapter 02: Why Thakur Ji (Dark burgundy comfort sanctuary & rhythm cards) -->
+    <WhyThakurJi />
+
+    <!-- Story Chapter 03: Rest (Real Deluxe, Premium, and Family rooms) -->
+    <RoomsSection />
+
+    <!-- "Why Stay Here?" Reassurance Interlude -->
+    <PromiseSection />
+
+    <!-- Chapter 04: What You Return To (6 Verified Amenities) -->
+    <Amenities />
+
+    <!-- Staggered Editorial Photography Gallery Ribbon -->
+    <Gallery />
+
+    <!-- Chapter 05: The City (Google Review Trust Card & Varanasi Landmarks) -->
+    <KashiExperience />
+
+    <!-- Cinematic Closing Section: Come for Kashi. Stay for comfort. -->
+    <ClosingCTA />
+  </main>
 </Layout>

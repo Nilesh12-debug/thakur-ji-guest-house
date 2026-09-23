@@ -1,0 +1,96 @@
+---
+// Infinite smooth horizontal marquee banner
+---
+
+<div class="marquee-wrap" id="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-content">
+      <span><i>🪔</i>Arrive in Kashi</span>
+      <span><i>✦</i>Explore the ghats</span>
+      <span><i>⌖</i>Return to comfort</span>
+      <span><i>🪷</i>Rest well</span>
+      <span><i>🛕</i>Wake up in Varanasi</span>
+      <span><i>✦</i>Feel the energy</span>
+    </div>
+    <div class="marquee-content" aria-hidden="true">
+      <span><i>🪔</i>Arrive in Kashi</span>
+      <span><i>✦</i>Explore the ghats</span>
+      <span><i>⌖</i>Return to comfort</span>
+      <span><i>🪷</i>Rest well</span>
+      <span><i>🛕</i>Wake up in Varanasi</span>
+      <span><i>✦</i>Feel the energy</span>
+    </div>
+    <div class="marquee-content" aria-hidden="true">
+      <span><i>🪔</i>Arrive in Kashi</span>
+      <span><i>✦</i>Explore the ghats</span>
+      <span><i>⌖</i>Return to comfort</span>
+      <span><i>🪷</i>Rest well</span>
+      <span><i>🛕</i>Wake up in Varanasi</span>
+      <span><i>✦</i>Feel the energy</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.marquee-wrap {
+  position: relative;
+  z-index: 20;
+  background: #61131a;
+  border-top: 1px solid #bb8b40;
+  border-bottom: 1px solid #bb8b40;
+  color: #f4deb1;
+  overflow: hidden;
+  user-select: none;
+  padding: 16px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.marquee-content span {
+  white-space: nowrap;
+  padding: 0 34px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.marquee-content i {
+  font-style: normal;
+  color: #e4bf72;
+  margin-right: 14px;
+  font-size: 16px;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+</style>

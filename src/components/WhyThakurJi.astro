@@ -1,0 +1,273 @@
+---
+// Chapter 02: Why Thakur Ji (Dark Burgundy Sanctuary)
+import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
+---
+
+<section class="story-dark-section" id="why-thakur-ji">
+  <div class="container">
+    <div class="story-dark-grid">
+      <!-- Left Editorial Column -->
+      <div class="story-dark-copy reveal-left">
+        <div class="story-marker dark">Chapter 02 · Why Thakur Ji</div>
+        <div class="eyebrow" style="color: #dfba69;">The comfort after the city</div>
+        
+        <h2>Because after the city, you want warmth — not complexity.</h2>
+        
+        <div class="devtext">सादगी में सुकून · काशी के करीब, अपनेपन के साथ</div>
+        
+        <p class="lead">
+          Thakur Ji does not need an invented palace story. Its real story is far more valuable: honest rooms, cold air conditioning, sincere hospitality, and enough space for families and pilgrims to regroup without stress.
+        </p>
+
+        <!-- 4 Journey Rhythm Cards with Lucide Icons -->
+        <div class="story-rhythm dark">
+          <div class="rhythm-item">
+            <div class="rhythm-header">
+              <DoorOpen size={20} class="rhythm-icon" />
+              <b>Arrive</b>
+            </div>
+            <span>Drop the day’s noise at the door and be greeted with warmth.</span>
+          </div>
+          <div class="rhythm-item">
+            <div class="rhythm-header">
+              <Wind size={20} class="rhythm-icon" />
+              <b>Reset</b>
+            </div>
+            <span>Cool down in air conditioning, wash off the dust and breathe.</span>
+          </div>
+          <div class="rhythm-item">
+            <div class="rhythm-header">
+              <Moon size={20} class="rhythm-icon" />
+              <b>Rest</b>
+            </div>
+            <span>Deep, quiet sleep without overcomplicating your Varanasi stay.</span>
+          </div>
+          <div class="rhythm-item">
+            <div class="rhythm-header">
+              <Sunrise size={20} class="rhythm-icon" />
+              <b>Return</b>
+            </div>
+            <span>Wake up refreshed and ready for sunrise boat rides on Ganga.</span>
+          </div>
+        </div>
+
+        <div class="story-actions">
+          <a href="#rooms" class="btn primary">
+            Explore our rooms ✦
+          </a>
+          <button class="btn ghost open-booking-btn" type="button">
+            Check availability
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Visual Feature: Family Room Photo with Warm Editorial Frame -->
+      <div class="story-dark-photo-wrap reveal">
+        <div class="dark-photo-card">
+          <picture>
+            <source srcset="/images/family-room.webp" type="image/webp" />
+            <img 
+              src="/images/family-room.jpg" 
+              alt="Family room with comfortable multiple beds at Thakur Ji Guest House Varanasi" 
+              loading="lazy" 
+              width="1418" 
+              height="1068"
+            />
+          </picture>
+          <div class="photo-overlay-tag">
+            <span class="tag-title">STAY TOGETHER</span>
+            <p class="tag-desc">Spacious family configurations for travellers exploring Kashi together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.story-dark-section {
+  background: #21090b;
+  color: #fff2df;
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-dark-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+.story-dark-copy h2 {
+  margin: 12px 0 16px;
+  font: 600 clamp(44px, 4.8vw, 76px) / 0.92 var(--font-serif);
+  color: #fff3df;
+  letter-spacing: -1.2px;
+}
+
+.devtext {
+  font-family: var(--font-devanagari);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.4;
+  color: #dfb968;
+  margin: 18px 0 22px;
+  letter-spacing: 0.5px;
+}
+
+.story-dark-copy .lead {
+  color: #d8c3b8;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.story-rhythm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 32px 0 36px;
+}
+
+.rhythm-item {
+  padding: 20px;
+  border: 1px solid rgba(232, 196, 119, 0.18);
+  background: rgba(255, 255, 255, 0.035);
+  border-radius: 18px;
+  transition: transform 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.rhythm-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 196, 119, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.rhythm-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+:global(.rhythm-icon) {
+  color: #e5bf71;
+  flex-shrink: 0;
+}
+
+.rhythm-item b {
+  display: block;
+  font: 600 24px var(--font-serif);
+  color: #f3dec0;
+  margin: 0;
+}
+
+.rhythm-item span {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: #cbb5a8;
+}
+
+.story-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Right Visual */
+.dark-photo-card {
+  position: relative;
+  height: 580px;
+  border-radius: 34px;
+  overflow: hidden;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55);
+}
+
+.dark-photo-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dark-photo-card:hover img {
+  transform: scale(1.04);
+}
+
+.dark-photo-card::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(241, 210, 145, 0.3);
+  border-radius: 24px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.photo-overlay-tag {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  z-index: 3;
+  background: rgba(26, 7, 9, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(228, 191, 112, 0.3);
+  border-radius: 20px;
+  padding: 18px 22px;
+}
+
+.tag-title {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #dfb968;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.tag-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #edd9c8;
+}
+
+@media (max-width: 1100px) {
+  .story-dark-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .dark-photo-card {
+    height: 440px;
+  }
+}
+
+@media (max-width: 680px) {
+  .story-dark-section {
+    padding: 80px 0;
+  }
+  .story-rhythm {
+    grid-template-columns: 1fr;
+  }
+  .devtext {
+    font-size: 18px;
+  }
+  .dark-photo-card {
+    height: 360px;
+    border-radius: 24px;
+  }
+  .photo-overlay-tag {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    padding: 14px 16px;
+  }
+}
+</style>

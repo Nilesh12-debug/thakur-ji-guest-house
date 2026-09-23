@@ -1,0 +1,348 @@
+---
+import { property } from '../data/property';
+import BookingWidget from './BookingWidget.astro';
+import { Compass, Sparkles, Flame } from 'lucide-astro';
+---
+
+<section class="hero" id="home">
+  <!-- Edge-to-edge Real Property Background -->
+  <div class="hero-media" id="heroParallax" style="background-image: url('/images/deluxe-room.webp'), url('/images/deluxe-room.jpg');"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Subtle Heritage Architectural Arch SVG Linework -->
+  <svg class="arch-svg" viewBox="0 0 280 1000" aria-hidden="true" focusable="false">
+    <path d="M0 20h110c58 0 96 41 96 102v164M0 112h78c54 0 88 34 88 90v172M0 212h50c44 0 72 28 72 72v224" />
+    <path d="M34 0v250M82 0v190M128 0v138" />
+  </svg>
+
+  <!-- Hanging Bell with gentle sway -->
+  <div class="bells" aria-hidden="true">🔔</div>
+
+  <!-- Vertical Devanagari Accent -->
+  <div class="kashi-vertical" aria-hidden="true">काशी · आरती · गंगा · आतिथ्य</div>
+
+  <!-- Varanasi Riverfront Ghat Skyline SVG Outline -->
+  <svg class="hero-ghat" viewBox="0 0 800 340" aria-hidden="true" focusable="false">
+    <path d="M0 300h800M25 290v-90h40v90M45 200v-62M36 138h18M110 290v-130h70v130M132 160V108h24v52M144 108V56M138 56h12M235 290v-90h56v90M263 200v-48M254 152h16M338 290v-160h102v160M370 130V82h32v48M383 82V34M376 34h15M480 290v-105h68v105M512 185v-58M503 127h18M585 290v-145h90v145M615 145V92h30v53M630 92V40M622 40h16M712 290v-85h45v85" />
+  </svg>
+
+  <div class="hero-wrap">
+    <div class="hero-copy reveal-left">
+      <div class="kicker">Your stay is part of the Varanasi story</div>
+      <h1>
+        You don’t come to Kashi<br />
+        just to <em>sleep.</em>
+      </h1>
+      <p class="hero-p">
+        You come for the lanes, the ghats, the sound of bells, the river at dawn — and after all of that, you need somewhere simple, comfortable and welcoming to return to.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn primary open-booking-btn" type="button">
+          Book your stay ✦
+        </button>
+        <a 
+          href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20I%20would%20like%20to%20enquire%20about%20room%20availability%20in%20Varanasi.`} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn ghost"
+        >
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <i class="hero-stat-icon">
+            <Compass size={20} strokeWidth={1.8} />
+          </i>
+          <span>
+            <strong>Feel Varanasi</strong>
+            A stay designed around the reason you came
+          </span>
+        </div>
+        <div class="hero-stat">
+          <i class="hero-stat-icon">
+            <Sparkles size={20} strokeWidth={1.8} />
+          </i>
+          <span>
+            <strong>Return to comfort</strong>
+            A comfortable place after a full day in Kashi
+          </span>
+        </div>
+        <div class="hero-stat">
+          <i class="hero-stat-icon">
+            <Flame size={20} strokeWidth={1.8} />
+          </i>
+          <span>
+            <strong>Explore with ease</strong>
+            A practical base for discovering Varanasi
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Enquiry Widget on Right -->
+    <BookingWidget />
+  </div>
+
+  <a href="#marquee" class="scrollcue" aria-label="Scroll down to begin the story">Scroll to begin</a>
+</section>
+
+<style>
+.hero {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #25090c;
+  isolation: isolate;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 46%;
+  transform: scale(1.04);
+  will-change: transform, background-position;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(22, 5, 7, 0.95) 0%, rgba(33, 8, 10, 0.76) 38%, rgba(33, 8, 10, 0.22) 68%, rgba(33, 8, 10, 0.65) 100%),
+    linear-gradient(180deg, rgba(16, 4, 5, 0.18), rgba(16, 4, 5, 0.72) 96%);
+  z-index: 2;
+}
+
+.arch-svg {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  height: 100%;
+  width: 280px;
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.arch-svg path {
+  stroke: #ebc975;
+  fill: none;
+  stroke-width: 1.1;
+}
+
+.bells {
+  position: absolute;
+  left: 64px;
+  top: 116px;
+  z-index: 5;
+  font-size: 38px;
+  color: #ebc775;
+  animation: swing 4.8s ease-in-out infinite;
+  transform-origin: top center;
+  filter: drop-shadow(0 4px 12px rgba(235, 199, 117, 0.35));
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.kashi-vertical {
+  position: absolute;
+  right: 2.2vw;
+  top: 165px;
+  z-index: 5;
+  writing-mode: vertical-rl;
+  color: #efd596;
+  font-family: var(--font-devanagari);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 2.5px;
+  opacity: 0.88;
+}
+
+.hero-ghat {
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  width: 40vw;
+  opacity: 0.22;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-ghat path {
+  stroke: #f4dab0;
+  fill: none;
+  stroke-width: 1.1;
+}
+
+.hero-wrap {
+  position: relative;
+  z-index: 10;
+  width: min(1440px, 92vw);
+  margin: 0 auto;
+  padding: 160px 0 76px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.65fr;
+  gap: 7vw;
+  align-items: end;
+}
+
+.hero-copy {
+  color: #fff6ea;
+  max-width: 760px;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e6c57b;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.kicker::before {
+  content: "";
+  width: 58px;
+  height: 1px;
+  background: #dcb567;
+}
+
+.hero h1 {
+  margin: 0;
+  font: 600 clamp(64px, 7vw, 118px) / 0.84 var(--font-serif);
+  letter-spacing: -2px;
+  color: #ffffff;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: #efd08a;
+}
+
+.hero-p {
+  max-width: 600px;
+  color: #eadccf;
+  line-height: 1.85;
+  font-size: 15.5px;
+  margin: 26px 0 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-stat {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  max-width: 220px;
+}
+
+.hero-stat i {
+  font-style: normal;
+  color: #e4bf70;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.hero-stat span {
+  display: block;
+  color: #ead8c1;
+  font-size: 10.5px;
+  line-height: 1.55;
+}
+
+.hero-stat strong {
+  display: block;
+  color: #fff3de;
+  font-size: 11.5px;
+  margin-bottom: 2px;
+}
+
+.scrollcue {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: #e1bf79;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+
+.scrollcue::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(#dfbc70, transparent);
+  margin: 8px auto 0;
+}
+
+@media (max-width: 1100px) {
+  .hero-wrap {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 140px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-wrap {
+    width: 90vw;
+    padding-top: 115px;
+    padding-bottom: 60px;
+  }
+  .hero h1 {
+    font-size: clamp(50px, 12vw, 68px);
+    line-height: 0.9;
+    letter-spacing: -1px;
+  }
+  .hero-p {
+    font-size: 14px;
+    margin: 18px 0 24px;
+  }
+  .bells, .kashi-vertical, .scrollcue {
+    display: none;
+  }
+  .hero-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .hero-stat {
+    max-width: 100%;
+  }
+}
+</style>
