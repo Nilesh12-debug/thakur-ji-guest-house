@@ -501,6 +501,9 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
     padding: 0 12px 0 16px;
     border-radius: 16px;
     width: calc(100vw - 20px);
+    background: rgba(255, 250, 243, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   .brand-title {
     font-size: 21px;
@@ -519,11 +522,16 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
   const drawerClose = document.getElementById('drawerClose');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
+  let navScrolled = false;
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      nav?.classList.add('scrolled');
-    } else {
-      nav?.classList.remove('scrolled');
+    const shouldScroll = window.scrollY > 25;
+    if (shouldScroll !== navScrolled) {
+      navScrolled = shouldScroll;
+      if (navScrolled) {
+        nav?.classList.add('scrolled');
+      } else {
+        nav?.classList.remove('scrolled');
+      }
     }
   }, { passive: true });
 

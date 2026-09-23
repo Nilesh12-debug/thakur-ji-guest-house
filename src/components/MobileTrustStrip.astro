@@ -130,32 +130,8 @@ import { Star, Wifi, Snowflake, Users, MapPin } from 'lucide-astro';
     justify-content: flex-start;
   }
   .trust-badge:active {
-    transform: scale(0.95);
-    background: rgba(185, 137, 63, 0.18);
-  }
-  /* Mobile sequential gleam animation */
-  .trust-badge {
-    animation: mobileBadgeWave 5s ease-in-out infinite;
-  }
-  .trust-badge:nth-child(1) { animation-delay: 0s; }
-  .trust-badge:nth-child(3) { animation-delay: 1.2s; }
-  .trust-badge:nth-child(5) { animation-delay: 2.4s; }
-  .trust-badge:nth-child(7) { animation-delay: 3.6s; }
-  .trust-badge:nth-child(9) { animation-delay: 4.8s; }
-}
-
-@keyframes mobileBadgeWave {
-  0%, 100% {
-    color: #55342a;
-    transform: translateY(0);
-  }
-  20% {
-    color: var(--wine);
-    transform: translateY(-2px);
-  }
-  35% {
-    color: #55342a;
-    transform: translateY(0);
+    transform: scale(0.96);
+    background: rgba(185, 137, 63, 0.15);
   }
 }
 </style>

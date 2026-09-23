@@ -238,23 +238,9 @@ const attractionIcons: Record<string, any> = {
   .place-card:active {
     transform: scale(0.97);
   }
-  .place-icon-bg {
-    animation: mobilePlaceFloat 4s ease-in-out infinite;
-  }
-  .place-card:nth-child(2) .place-icon-bg { animation-delay: 1s; }
-  .place-card:nth-child(3) .place-icon-bg { animation-delay: 2s; }
-  .place-card:nth-child(4) .place-icon-bg { animation-delay: 3s; }
-}
-
-@keyframes mobilePlaceFloat {
-  0%, 100% {
-    transform: scale(1) translateY(0);
-    opacity: 0.22;
-  }
-  50% {
-    transform: scale(1.1) translateY(-2px);
-    opacity: 0.4;
-    color: #b9893f;
+  .place-card:active .place-icon-bg {
+    opacity: 0.45;
+    color: var(--wine);
   }
 }
 </style>

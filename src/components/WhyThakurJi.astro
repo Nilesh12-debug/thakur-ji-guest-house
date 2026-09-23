@@ -61,6 +61,7 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
               src="/images/family-room.jpg" 
               alt="Family room with comfortable multiple beds at Thakur Ji Guest House Varanasi" 
               loading="lazy" 
+              decoding="async"
               width="1418" 
               height="1068"
             />
@@ -270,17 +271,9 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
     transform: scale(0.97);
     border-color: rgba(232, 196, 119, 0.5);
   }
-  .rhythm-item :global(.rhythm-icon) {
-    animation: mobileRhythmFloat 3.6s ease-in-out infinite;
-  }
-  .rhythm-item:nth-child(2) :global(.rhythm-icon) {
-    animation-delay: 0.9s;
-  }
-  .rhythm-item:nth-child(3) :global(.rhythm-icon) {
-    animation-delay: 1.8s;
-  }
-  .rhythm-item:nth-child(4) :global(.rhythm-icon) {
-    animation-delay: 2.7s;
+  .rhythm-item:active :global(.rhythm-icon) {
+    color: #fff3db;
+    transform: scale(1.1);
   }
   .dark-photo-card {
     height: 320px;
@@ -291,19 +284,6 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
     right: 14px;
     bottom: 14px;
     padding: 12px 14px;
-  }
-}
-
-@keyframes mobileRhythmFloat {
-  0%, 100% {
-    transform: translateY(0);
-    color: #e5bf71;
-    filter: none;
-  }
-  50% {
-    transform: translateY(-2.5px) scale(1.08);
-    color: #fff3db;
-    filter: drop-shadow(0 0 8px rgba(229, 191, 113, 0.6));
   }
 }
 </style>

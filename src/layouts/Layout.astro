@@ -117,13 +117,21 @@ const schemaData = {
 
     <!-- Global Animation, Reading Progress & Parallax Observer -->
     <script>
-      // Reading Progress Bar
+      // Reading Progress Bar (throttled with requestAnimationFrame)
       const progressBar = document.getElementById('scrollProgress');
+      let ticking = false;
+
       window.addEventListener('scroll', () => {
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (totalHeight > 0 && progressBar) {
-          const progress = (window.scrollY / totalHeight) * 100;
-          progressBar.style.width = `${progress}%`;
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalHeight > 0 && progressBar) {
+              const progress = (window.scrollY / totalHeight) * 100;
+              progressBar.style.width = `${progress}%`;
+            }
+            ticking = false;
+          });
+          ticking = true;
         }
       }, { passive: true });
 

@@ -449,29 +449,16 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
     padding-top: 18px;
   }
   .hero-stat {
-    padding: 4px 6px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    transition: background-color 0.2s;
   }
-  .hero-stat-icon {
-    animation: mobileStatFloat 4s ease-in-out infinite;
+  .hero-stat:active {
+    background: rgba(255, 255, 255, 0.08);
   }
-  .hero-stat:nth-child(2) .hero-stat-icon {
-    animation-delay: 1.3s;
-  }
-  .hero-stat:nth-child(3) .hero-stat-icon {
-    animation-delay: 2.6s;
-  }
-}
-
-@keyframes mobileStatFloat {
-  0%, 100% {
-    transform: translateY(0);
-    color: #e4bf70;
-    filter: none;
-  }
-  50% {
-    transform: translateY(-3px) scale(1.1);
-    color: #ffe59e;
-    filter: drop-shadow(0 0 8px rgba(247, 212, 133, 0.6));
+  .hero-stat:active .hero-stat-icon {
+    color: #ffdf8d;
+    transform: scale(1.12);
   }
 }
 </style>

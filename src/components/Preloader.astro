@@ -18,7 +18,7 @@
   background: radial-gradient(circle at 50% 45%, #421215, #1b0608 72%);
   display: grid;
   place-items: center;
-  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.75s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
   pointer-events: all;
 }
 
@@ -36,7 +36,7 @@
 
 .loader-diya {
   font-size: 46px;
-  filter: drop-shadow(0 0 18px #f0bd5c);
+  filter: drop-shadow(0 0 14px #f0bd5c);
   animation: diyaFloat 2.2s ease-in-out infinite;
 }
 
@@ -94,6 +94,12 @@
   }
 }
 
+@media (max-width: 680px) {
+  .loader-diya {
+    filter: drop-shadow(0 0 8px #f0bd5c);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .loader {
     display: none !important;
@@ -102,7 +108,6 @@
 </style>
 
 <script>
-  // Fast dismiss: hide immediately when window loads or after max 650ms
   function dismissLoader() {
     const loader = document.getElementById('loader');
     if (loader && !loader.classList.contains('hide')) {
@@ -110,13 +115,22 @@
     }
   }
 
-  window.addEventListener('load', () => {
-    setTimeout(dismissLoader, 450);
-  });
+  // Fast dismiss: as soon as DOM is ready
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(dismissLoader, 80);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(dismissLoader, 100);
+    });
+    window.addEventListener('load', () => {
+      dismissLoader();
+    });
+  }
 
-  // Fallback safety timeout for slow networks
-  setTimeout(dismissLoader, 1200);
+  // Safety fallback
+  setTimeout(dismissLoader, 700);
 
-  // Instant dismiss on first user touch/click if ready
+  // Instant dismiss on any user touch/scroll gesture
   window.addEventListener('touchstart', dismissLoader, { once: true, passive: true });
+  window.addEventListener('pointerdown', dismissLoader, { once: true, passive: true });
 </script>

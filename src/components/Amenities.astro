@@ -138,34 +138,16 @@ const iconMap: Record<string, any> = {
   .amenity-card:active {
     transform: scale(0.96);
   }
+  .amenity-card:active .amenity-icon-circle {
+    transform: scale(1.1);
+    background: #fbf0df;
+    color: var(--wine);
+  }
   .amenity-title {
     font-size: 11.5px;
   }
   .amenity-desc {
     font-size: 9px;
-  }
-  /* Mobile subtle ambient float for amenity circles */
-  .amenity-icon-circle {
-    animation: mobileAmenityPulse 4s ease-in-out infinite;
-  }
-  .amenity-card:nth-child(2) .amenity-icon-circle { animation-delay: 0.7s; }
-  .amenity-card:nth-child(3) .amenity-icon-circle { animation-delay: 1.4s; }
-  .amenity-card:nth-child(4) .amenity-icon-circle { animation-delay: 2.1s; }
-  .amenity-card:nth-child(5) .amenity-icon-circle { animation-delay: 2.8s; }
-  .amenity-card:nth-child(6) .amenity-icon-circle { animation-delay: 3.5s; }
-}
-
-@keyframes mobileAmenityPulse {
-  0%, 100% {
-    transform: translateY(0);
-    border-color: rgba(199, 152, 79, 0.4);
-    box-shadow: 0 4px 12px rgba(103, 16, 25, 0.06);
-  }
-  50% {
-    transform: translateY(-3px) scale(1.06);
-    border-color: #dfba69;
-    color: #861821;
-    box-shadow: 0 8px 18px rgba(199, 152, 79, 0.25);
   }
 }
 </style>
