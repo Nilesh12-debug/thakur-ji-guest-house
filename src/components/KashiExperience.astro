@@ -133,14 +133,16 @@ const attractionIcons: Record<string, any> = {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
 }
 
 .place-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 0 16px 36px rgba(47, 23, 16, 0.09);
-  border-color: rgba(185, 137, 63, 0.4);
+  border-color: rgba(185, 137, 63, 0.45);
 }
 
 .place-header {
@@ -155,6 +157,11 @@ const attractionIcons: Record<string, any> = {
   font: 600 22px / 1.15 var(--font-serif);
   color: #5f1117;
   letter-spacing: -0.3px;
+  transition: color 0.3s ease;
+}
+
+.place-card:hover .place-name {
+  color: #7d1822;
 }
 
 .place-badge {
@@ -163,6 +170,11 @@ const attractionIcons: Record<string, any> = {
   text-transform: uppercase;
   color: #a47b3e;
   font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.place-card:hover .place-badge {
+  color: var(--wine);
 }
 
 .place-desc {
@@ -180,14 +192,16 @@ const attractionIcons: Record<string, any> = {
   right: 16px;
   bottom: 14px;
   color: #c7984f;
-  opacity: 0.2;
+  opacity: 0.22;
   pointer-events: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: color 0.4s ease, transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
 }
 
 .place-card:hover .place-icon-bg {
-  transform: scale(1.1);
-  opacity: 0.35;
+  transform: scale(1.18) rotate(5deg);
+  opacity: 0.48;
+  color: #a1232e;
+  filter: drop-shadow(0 0 12px rgba(223, 186, 105, 0.6));
 }
 
 @media (max-width: 1024px) {
@@ -220,6 +234,27 @@ const attractionIcons: Record<string, any> = {
   .place-card {
     min-height: auto;
     padding: 20px;
+  }
+  .place-card:active {
+    transform: scale(0.97);
+  }
+  .place-icon-bg {
+    animation: mobilePlaceFloat 4s ease-in-out infinite;
+  }
+  .place-card:nth-child(2) .place-icon-bg { animation-delay: 1s; }
+  .place-card:nth-child(3) .place-icon-bg { animation-delay: 2s; }
+  .place-card:nth-child(4) .place-icon-bg { animation-delay: 3s; }
+}
+
+@keyframes mobilePlaceFloat {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.22;
+  }
+  50% {
+    transform: scale(1.1) translateY(-2px);
+    opacity: 0.4;
+    color: #b9893f;
   }
 }
 </style>

@@ -176,6 +176,13 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
   fill: none;
   stroke-width: 1.4;
   flex-shrink: 0;
+  transition: stroke 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+}
+
+.brand:hover .brand-icon {
+  stroke: #b9893f;
+  transform: scale(1.1) translateY(-1px);
+  filter: drop-shadow(0 0 8px rgba(185, 137, 63, 0.6));
 }
 
 .brand-text {
@@ -190,6 +197,11 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
   line-height: 1;
   color: var(--wine);
   letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+}
+
+.brand:hover .brand-title {
+  color: #7b1722;
 }
 
 .brand-subtitle {
@@ -254,6 +266,11 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
   justify-content: center;
   gap: 5px;
   z-index: 920;
+  transition: background-color 0.25s, transform 0.2s;
+}
+
+.menu-toggle:active {
+  transform: scale(0.92);
 }
 
 .menu-toggle .bar {
@@ -414,7 +431,7 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
 .drawer-contact-items {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .drawer-contact-item {
@@ -424,11 +441,27 @@ import { Phone, MessageCircle, Navigation } from 'lucide-astro';
   font-size: 13px;
   color: #553e35;
   text-decoration: none;
-  padding: 6px 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: color 0.25s, background-color 0.25s, transform 0.25s;
 }
 
-.drawer-contact-item:hover {
+.drawer-contact-item:hover,
+.drawer-contact-item:active {
   color: var(--wine);
+  background: rgba(87, 16, 25, 0.06);
+  transform: translateX(4px);
+}
+
+.drawer-contact-item :global(svg) {
+  color: #b9893f;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.drawer-contact-item:hover :global(svg),
+.drawer-contact-item:active :global(svg) {
+  color: var(--wine);
+  transform: scale(1.2);
 }
 
 .drawer-footer-note {

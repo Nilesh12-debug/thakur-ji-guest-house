@@ -80,6 +80,15 @@ import { Star, Wifi, Snowflake, Users, MapPin } from 'lucide-astro';
   font-weight: 600;
   color: #55342a;
   white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 99px;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: default;
+}
+
+.trust-badge:hover {
+  background: rgba(185, 137, 63, 0.12);
+  color: var(--wine);
 }
 
 .trust-badge strong {
@@ -89,11 +98,24 @@ import { Star, Wifi, Snowflake, Users, MapPin } from 'lucide-astro';
 .stars-icon {
   display: flex;
   gap: 2px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.trust-badge:hover .stars-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(220, 181, 103, 0.8));
 }
 
 :global(.badge-icon) {
   color: #b9893f;
   flex-shrink: 0;
+  transition: color 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.trust-badge:hover :global(.badge-icon) {
+  color: #8c581a;
+  transform: translateY(-2px) scale(1.2);
+  filter: drop-shadow(0 0 6px rgba(220, 181, 103, 0.7));
 }
 
 .trust-divider {
@@ -106,6 +128,34 @@ import { Star, Wifi, Snowflake, Users, MapPin } from 'lucide-astro';
 @media (max-width: 768px) {
   .trust-track {
     justify-content: flex-start;
+  }
+  .trust-badge:active {
+    transform: scale(0.95);
+    background: rgba(185, 137, 63, 0.18);
+  }
+  /* Mobile sequential gleam animation */
+  .trust-badge {
+    animation: mobileBadgeWave 5s ease-in-out infinite;
+  }
+  .trust-badge:nth-child(1) { animation-delay: 0s; }
+  .trust-badge:nth-child(3) { animation-delay: 1.2s; }
+  .trust-badge:nth-child(5) { animation-delay: 2.4s; }
+  .trust-badge:nth-child(7) { animation-delay: 3.6s; }
+  .trust-badge:nth-child(9) { animation-delay: 4.8s; }
+}
+
+@keyframes mobileBadgeWave {
+  0%, 100% {
+    color: #55342a;
+    transform: translateY(0);
+  }
+  20% {
+    color: var(--wine);
+    transform: translateY(-2px);
+  }
+  35% {
+    color: #55342a;
+    transform: translateY(0);
   }
 }
 </style>

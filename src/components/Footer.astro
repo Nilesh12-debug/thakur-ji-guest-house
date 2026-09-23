@@ -172,18 +172,27 @@ import { Phone, MessageCircle, Mail, MapPin, Navigation } from 'lucide-astro';
   gap: 10px;
   font-size: 13px;
   color: #d8c2aa;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.contact-item:hover {
+.contact-item:hover,
+.contact-item:active {
   color: #ffd685;
-  transform: translateX(3px);
+  transform: translateX(4px);
 }
 
 .contact-item .icon {
   color: #dcb567;
   display: flex;
   align-items: center;
+  transition: color 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.contact-item:hover .icon,
+.contact-item:active .icon {
+  color: #ffe096;
+  transform: scale(1.22);
+  filter: drop-shadow(0 0 6px rgba(220, 181, 103, 0.8));
 }
 
 .footer-nav-links {

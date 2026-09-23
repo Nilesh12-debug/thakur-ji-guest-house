@@ -126,13 +126,18 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
   border: 1px solid rgba(232, 196, 119, 0.18);
   background: rgba(255, 255, 255, 0.035);
   border-radius: 18px;
-  transition: transform 0.25s, border-color 0.25s, background 0.25s;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: default;
 }
 
 .rhythm-item:hover {
-  transform: translateY(-2px);
-  border-color: rgba(232, 196, 119, 0.4);
-  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-4px);
+  border-color: rgba(232, 196, 119, 0.55);
+  background: rgba(255, 255, 255, 0.075);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 .rhythm-header {
@@ -145,6 +150,13 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 :global(.rhythm-icon) {
   color: #e5bf71;
   flex-shrink: 0;
+  transition: color 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+}
+
+.rhythm-item:hover :global(.rhythm-icon) {
+  color: #fff2d6;
+  transform: translateY(-2px) scale(1.18);
+  filter: drop-shadow(0 0 10px rgba(229, 191, 113, 0.8));
 }
 
 .rhythm-item b {
@@ -152,6 +164,11 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
   font: 600 22px var(--font-serif);
   color: #f3dec0;
   margin: 0;
+  transition: color 0.3s ease;
+}
+
+.rhythm-item:hover b {
+  color: #ffffff;
 }
 
 .rhythm-item span {
@@ -159,20 +176,6 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
   font-size: 11px;
   line-height: 1.6;
   color: #cbb5a8;
-}
-
-.story-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.story-cta-btn,
-.story-wa-btn {
-  height: 48px;
-  border-radius: 999px;
-  padding: 0 22px;
-  font-size: 13px;
 }
 
 /* Right Visual */
@@ -263,15 +266,21 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .story-actions {
-    flex-direction: column;
-    width: 100%;
+  .rhythm-item:active {
+    transform: scale(0.97);
+    border-color: rgba(232, 196, 119, 0.5);
   }
-  .story-cta-btn,
-  .story-wa-btn {
-    width: 100%;
-    justify-content: center;
-    height: 50px;
+  .rhythm-item :global(.rhythm-icon) {
+    animation: mobileRhythmFloat 3.6s ease-in-out infinite;
+  }
+  .rhythm-item:nth-child(2) :global(.rhythm-icon) {
+    animation-delay: 0.9s;
+  }
+  .rhythm-item:nth-child(3) :global(.rhythm-icon) {
+    animation-delay: 1.8s;
+  }
+  .rhythm-item:nth-child(4) :global(.rhythm-icon) {
+    animation-delay: 2.7s;
   }
   .dark-photo-card {
     height: 320px;
@@ -282,6 +291,19 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
     right: 14px;
     bottom: 14px;
     padding: 12px 14px;
+  }
+}
+
+@keyframes mobileRhythmFloat {
+  0%, 100% {
+    transform: translateY(0);
+    color: #e5bf71;
+    filter: none;
+  }
+  50% {
+    transform: translateY(-2.5px) scale(1.08);
+    color: #fff3db;
+    filter: drop-shadow(0 0 8px rgba(229, 191, 113, 0.6));
   }
 }
 </style>

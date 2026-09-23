@@ -152,9 +152,16 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   z-index: 5;
   font-size: 38px;
   color: #ebc775;
-  animation: swing 4.8s ease-in-out infinite;
+  animation: swing 4.8s ease-in-out infinite, bellGleam 6s ease-in-out infinite;
   transform-origin: top center;
   filter: drop-shadow(0 4px 12px rgba(235, 199, 117, 0.35));
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.bells:hover {
+  filter: drop-shadow(0 0 20px rgba(255, 225, 140, 0.9));
+  transform: scale(1.15) rotate(-6deg);
 }
 
 @keyframes swing {
@@ -163,6 +170,15 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   }
   50% {
     transform: rotate(4deg);
+  }
+}
+
+@keyframes bellGleam {
+  0%, 100% {
+    filter: drop-shadow(0 4px 12px rgba(235, 199, 117, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(255, 225, 140, 0.85));
   }
 }
 
@@ -264,6 +280,11 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   padding: 0 28px;
   font-size: 13.5px;
   border-radius: 999px;
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+}
+
+.hero-cta-btn:active {
+  transform: scale(0.97);
 }
 
 .hero-wa-btn {
@@ -272,6 +293,17 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   font-size: 13.5px;
   border-radius: 999px;
   border-color: rgba(248, 221, 171, 0.45);
+  transition: transform 0.25s, background-color 0.25s, border-color 0.25s, color 0.25s, filter 0.25s;
+}
+
+.hero-wa-btn:hover {
+  border-color: #ffd685;
+  color: #fffaf0;
+  filter: drop-shadow(0 0 12px rgba(235, 199, 117, 0.35));
+}
+
+.hero-wa-btn:active {
+  transform: scale(0.97);
 }
 
 .hero-stats {
@@ -288,12 +320,29 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   display: flex;
   gap: 10px;
   align-items: flex-start;
+  padding: 6px 8px;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+  cursor: default;
+}
+
+.hero-stat:hover {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .hero-stat-icon {
   color: #e4bf70;
   flex-shrink: 0;
   margin-top: 2px;
+  transition: color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              filter 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-stat:hover .hero-stat-icon {
+  color: #ffdf8d;
+  transform: translateY(-3px) scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 10px rgba(247, 212, 133, 0.75));
 }
 
 .hero-stat-text strong {
@@ -301,6 +350,11 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   color: #fff3de;
   font-size: 11.5px;
   margin-bottom: 3px;
+  transition: color 0.3s ease;
+}
+
+.hero-stat:hover .hero-stat-text strong {
+  color: #ffe8b2;
 }
 
 .hero-stat-text span {
@@ -390,9 +444,34 @@ import { Compass, Sparkles, Flame, MessageCircle, ArrowRight } from 'lucide-astr
   }
   .hero-stats {
     grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 28px;
-    padding-top: 20px;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 18px;
+  }
+  .hero-stat {
+    padding: 4px 6px;
+  }
+  .hero-stat-icon {
+    animation: mobileStatFloat 4s ease-in-out infinite;
+  }
+  .hero-stat:nth-child(2) .hero-stat-icon {
+    animation-delay: 1.3s;
+  }
+  .hero-stat:nth-child(3) .hero-stat-icon {
+    animation-delay: 2.6s;
+  }
+}
+
+@keyframes mobileStatFloat {
+  0%, 100% {
+    transform: translateY(0);
+    color: #e4bf70;
+    filter: none;
+  }
+  50% {
+    transform: translateY(-3px) scale(1.1);
+    color: #ffe59e;
+    filter: drop-shadow(0 0 8px rgba(247, 212, 133, 0.6));
   }
 }
 </style>
