@@ -1,7 +1,7 @@
 ---
 import { property } from '../data/property';
 import GoogleReviewSummary from './GoogleReviewSummary.astro';
-import { Landmark, Flame, Sunset, Train } from 'lucide-astro';
+import { Landmark, Flame, Sunset, Train, MapPin, Navigation, Phone, MessageCircle } from 'lucide-astro';
 
 const attractionIcons: Record<string, any> = {
   'kashi-vishwanath': Landmark,
@@ -16,12 +16,40 @@ const attractionIcons: Record<string, any> = {
     <div class="section-top reveal">
       <div class="kashi-header-copy">
         <div class="story-marker">Chapter 05 · The City</div>
-        <div class="eyebrow">A sanctuary within the sacred geography</div>
+        <div class="eyebrow">Stay close to the experience</div>
         <h2>People remember the city. Your guest house becomes part of that memory.</h2>
         <div class="kashi-devanagari">सुबह गंगा के नाम · शाम सुकून के नाम</div>
         <p class="lead">
-          We don't just offer a bed; we offer the reassurance of a reliable, comfortable sanctuary to return to while you immerse yourself in the living rhythm of Varanasi.
+          We offer the reassurance of a reliable, comfortable sanctuary to return to while you immerse yourself in the living spiritual rhythm of Varanasi.
         </p>
+
+        <!-- Prominent Mobile-First Maps & Contact Navigation Bar -->
+        <div class="mobile-location-actions">
+          <a 
+            href={property.mapUrl || "https://maps.google.com/?q=Thakur+Ji+Guest+House+Varanasi"} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn primary map-main-btn"
+          >
+            <Navigation size={18} />
+            <span>Open in Google Maps ↗</span>
+          </a>
+
+          <a href={`tel:${property.phone}`} class="btn ghost map-sub-btn">
+            <Phone size={17} />
+            <span>Call Host</span>
+          </a>
+
+          <a 
+            href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20can%20you%20share%20your%20exact%20location%20and%20directions?`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn ghost map-sub-btn"
+          >
+            <MessageCircle size={17} />
+            <span>Directions via WhatsApp</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -51,7 +79,7 @@ const attractionIcons: Record<string, any> = {
               <p class="place-desc">{place.description}</p>
               
               <div class="place-icon-bg" aria-hidden="true">
-                <IconComp size={48} strokeWidth={1.2} />
+                <IconComp size={44} strokeWidth={1.3} />
               </div>
             </article>
           );
@@ -64,8 +92,8 @@ const attractionIcons: Record<string, any> = {
 <style>
 .kashi-sec {
   background: #f0e4d4;
-  padding-top: 100px;
-  padding-bottom: 120px;
+  padding-top: 90px;
+  padding-bottom: 110px;
 }
 
 .kashi-header-copy {
@@ -75,17 +103,46 @@ const attractionIcons: Record<string, any> = {
 .kashi-devanagari {
   font-family: var(--font-devanagari);
   font-weight: 600;
-  font-size: 22px;
+  font-size: 20px;
   color: #a06e30;
-  margin: 12px 0 16px;
+  margin: 10px 0 14px;
   letter-spacing: 0.5px;
+}
+
+.mobile-location-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.map-main-btn {
+  height: 48px;
+  padding: 0 22px;
+  font-size: 13px;
+  border-radius: 999px;
+}
+
+.map-sub-btn {
+  height: 48px;
+  padding: 0 18px;
+  font-size: 13px;
+  border-radius: 999px;
+  background: rgba(87, 16, 25, 0.08);
+  border: 1px solid rgba(87, 16, 25, 0.22);
+  color: var(--wine);
+}
+
+.map-sub-btn:hover {
+  background: rgba(87, 16, 25, 0.15);
+  color: var(--wine);
 }
 
 .kashi-grid {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 28px;
-  margin-top: 16px;
+  margin-top: 32px;
 }
 
 .attractions-grid {
@@ -105,12 +162,12 @@ const attractionIcons: Record<string, any> = {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
 }
 
 .place-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 16px 36px rgba(47, 23, 16, 0.09);
   border-color: rgba(185, 137, 63, 0.4);
 }
@@ -124,13 +181,13 @@ const attractionIcons: Record<string, any> = {
 
 .place-name {
   margin: 0;
-  font: 600 24px / 1.15 var(--font-serif);
+  font: 600 22px / 1.15 var(--font-serif);
   color: #5f1117;
   letter-spacing: -0.3px;
 }
 
 .place-badge {
-  font-size: 9px;
+  font-size: 8.5px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #a47b3e;
@@ -140,16 +197,16 @@ const attractionIcons: Record<string, any> = {
 .place-desc {
   margin: 0;
   font-size: 11.5px;
-  line-height: 1.7;
+  line-height: 1.65;
   color: #725b52;
   position: relative;
   z-index: 2;
-  max-width: 85%;
+  max-width: 86%;
 }
 
 .place-icon-bg {
   position: absolute;
-  right: 18px;
+  right: 16px;
   bottom: 14px;
   color: #c7984f;
   opacity: 0.2;
@@ -158,28 +215,38 @@ const attractionIcons: Record<string, any> = {
 }
 
 .place-card:hover .place-icon-bg {
-  transform: scale(1.12);
-  opacity: 0.38;
+  transform: scale(1.1);
+  opacity: 0.35;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
   .kashi-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
   }
 }
 
 @media (max-width: 680px) {
   .kashi-sec {
-    padding-top: 70px;
-    padding-bottom: 80px;
+    padding-top: 60px;
+    padding-bottom: 70px;
+  }
+  .mobile-location-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .map-main-btn,
+  .map-sub-btn {
+    width: 100%;
+    justify-content: center;
+    height: 50px;
   }
   .attractions-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
   .kashi-devanagari {
-    font-size: 18px;
+    font-size: 17px;
   }
   .place-card {
     min-height: auto;

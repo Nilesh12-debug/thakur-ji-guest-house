@@ -1,5 +1,6 @@
 ---
 import { property } from '../data/property';
+import { Calendar, MessageCircle, Phone } from 'lucide-astro';
 ---
 
 <section class="closing-story" id="book" style="--closing-image: url('/images/deluxe-room.webp'), url('/images/deluxe-room.jpg');">
@@ -16,20 +17,29 @@ import { property } from '../data/property';
     </h2>
 
     <p class="closing-copy">
-      Thakur Ji Guest House becomes the quiet chapter between the moments you came to Varanasi to experience — the temple darshan, the evening aarti, the dawn boat ride, the family moments and the contemplative walk through sacred Kashi.
+      Make Thakur Ji Guest House your quiet, dependable sanctuary between the moments you came to experience — the early morning boat ride, the evening aarti, the temple visit and the walk through old Kashi.
     </p>
 
+    <!-- Stacked Full-Width CTAs on Mobile -->
     <div class="closing-actions">
-      <button class="btn primary open-booking-btn" type="button">
-        Book your stay ✦
+      <button class="btn primary closing-cta-btn open-booking-btn" type="button">
+        <Calendar size={18} strokeWidth={2} />
+        <span>Book Your Stay ✦</span>
       </button>
+
       <a 
         href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House!%20I%20would%20like%20to%20plan%20my%20stay%20in%20Varanasi.`} 
         target="_blank" 
         rel="noopener noreferrer" 
-        class="btn ghost"
+        class="btn ghost closing-wa-btn"
       >
-        Ask on WhatsApp
+        <MessageCircle size={18} strokeWidth={2} />
+        <span>WhatsApp Us</span>
+      </a>
+
+      <a href={`tel:${property.phone}`} class="btn ghost closing-call-btn">
+        <Phone size={18} strokeWidth={2} />
+        <span>Call Property: {property.phoneDisplay}</span>
       </a>
     </div>
 
@@ -42,7 +52,7 @@ import { property } from '../data/property';
 <style>
 .closing-story {
   position: relative;
-  min-height: 82vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,6 +61,7 @@ import { property } from '../data/property';
   background: #1d080a;
   color: #fff2dc;
   isolation: isolate;
+  padding: 80px 0;
 }
 
 .closing-story::before {
@@ -68,7 +79,7 @@ import { property } from '../data/property';
 .closing-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 5, 7, 0.72) 0%, rgba(20, 5, 7, 0.86) 60%, rgba(29, 8, 10, 0.96) 100%);
+  background: linear-gradient(180deg, rgba(20, 5, 7, 0.75) 0%, rgba(20, 5, 7, 0.88) 60%, rgba(29, 8, 10, 0.98) 100%);
   z-index: 2;
 }
 
@@ -76,7 +87,6 @@ import { property } from '../data/property';
   position: relative;
   z-index: 3;
   width: min(880px, 90vw);
-  padding: 100px 0;
   margin: 0 auto;
 }
 
@@ -85,12 +95,12 @@ import { property } from '../data/property';
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: #dfb968;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-weight: 700;
 }
 
 .closing-title {
-  font: 600 clamp(54px, 7vw, 104px) / 0.88 var(--font-serif);
+  font: 600 clamp(48px, 7vw, 100px) / 0.88 var(--font-serif);
   margin: 0;
   letter-spacing: -1.5px;
   color: #ffffff;
@@ -103,43 +113,65 @@ import { property } from '../data/property';
 }
 
 .closing-copy {
-  max-width: 680px;
-  margin: 24px auto 36px;
+  max-width: 660px;
+  margin: 20px auto 32px;
   font-size: 15px;
-  line-height: 1.85;
+  line-height: 1.8;
   color: #e4d1bf;
 }
 
 .closing-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.closing-cta-btn,
+.closing-wa-btn,
+.closing-call-btn {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 13.5px;
+  border-radius: 999px;
 }
 
 .closing-devanagari {
   font-family: var(--font-devanagari);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 19px;
   color: #e2bd6c;
-  margin-top: 40px;
+  margin-top: 36px;
   letter-spacing: 1.5px;
 }
 
 @media (max-width: 680px) {
-  .inner {
-    padding: 70px 0;
+  .closing-story {
+    padding: 60px 0;
+    min-height: auto;
   }
   .closing-title {
-    font-size: clamp(44px, 11vw, 62px);
+    font-size: clamp(38px, 10.5vw, 54px);
     line-height: 0.92;
   }
   .closing-copy {
     font-size: 13.5px;
+    margin: 16px auto 26px;
+  }
+  .closing-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .closing-cta-btn,
+  .closing-wa-btn,
+  .closing-call-btn {
+    width: 100%;
+    height: 52px;
   }
   .closing-devanagari {
-    font-size: 16px;
-    margin-top: 30px;
+    font-size: 15px;
+    margin-top: 26px;
   }
 }
 </style>

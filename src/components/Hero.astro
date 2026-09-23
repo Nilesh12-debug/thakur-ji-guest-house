@@ -1,7 +1,7 @@
 ---
 import { property } from '../data/property';
 import BookingWidget from './BookingWidget.astro';
-import { Compass, Sparkles, Flame } from 'lucide-astro';
+import { Compass, Sparkles, Flame, MessageCircle, Calendar } from 'lucide-astro';
 ---
 
 <section class="hero" id="home">
@@ -18,7 +18,7 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
   <!-- Hanging Bell with gentle sway -->
   <div class="bells" aria-hidden="true">🔔</div>
 
-  <!-- Vertical Devanagari Accent -->
+  <!-- Vertical Devanagari Accent on Desktop -->
   <div class="kashi-vertical" aria-hidden="true">काशी · आरती · गंगा · आतिथ्य</div>
 
   <!-- Varanasi Riverfront Ghat Skyline SVG Outline -->
@@ -27,63 +27,78 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
   </svg>
 
   <div class="hero-wrap">
+    <!-- Hero Editorial Text -->
     <div class="hero-copy reveal-left">
-      <div class="kicker">Your stay is part of the Varanasi story</div>
-      <h1>
-        You don’t come to Kashi<br />
-        just to <em>sleep.</em>
+      <div class="kicker">
+        <span class="kicker-line"></span>
+        <span>Thakur Ji Guest House · Varanasi</span>
+      </div>
+
+      <h1 class="hero-h1">
+        You don’t come<br class="mobile-break" />
+        to Kashi just<br />
+        to <em>sleep.</em>
       </h1>
+
       <p class="hero-p">
-        You come for the lanes, the ghats, the sound of bells, the river at dawn — and after all of that, you need somewhere simple, comfortable and welcoming to return to.
+        You come for the ghats, the lanes, the bells and the river at dawn. Thakur Ji is your comfortable, dependable sanctuary to return to after the city.
       </p>
 
+      <!-- Thumb-friendly Conversion CTAs -->
       <div class="hero-actions">
-        <button class="btn primary open-booking-btn" type="button">
-          Book your stay ✦
+        <button class="btn primary hero-cta-btn open-booking-btn" type="button">
+          <Calendar size={18} strokeWidth={2} />
+          <span>Book Your Stay ✦</span>
         </button>
         <a 
-          href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20I%20would%20like%20to%20enquire%20about%20room%20availability%20in%20Varanasi.`} 
+          href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20I%20am%20interested%20in%20staying%20in%20Varanasi.%20Please%20share%20room%20availability%20and%20rates.`} 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="btn ghost"
+          class="btn ghost hero-wa-btn"
         >
-          Chat on WhatsApp
+          <MessageCircle size={18} strokeWidth={2} />
+          <span>Chat on WhatsApp</span>
         </a>
       </div>
 
+      <!-- 3 Real Value Points -->
       <div class="hero-stats">
         <div class="hero-stat">
-          <i class="hero-stat-icon">
-            <Compass size={20} strokeWidth={1.8} />
-          </i>
-          <span>
+          <div class="hero-stat-icon">
+            <Compass size={18} strokeWidth={2} />
+          </div>
+          <div class="hero-stat-text">
             <strong>Feel Varanasi</strong>
-            A stay designed around the reason you came
-          </span>
+            <span>A stay designed around the reason you came</span>
+          </div>
         </div>
+
         <div class="hero-stat">
-          <i class="hero-stat-icon">
-            <Sparkles size={20} strokeWidth={1.8} />
-          </i>
-          <span>
+          <div class="hero-stat-icon">
+            <Sparkles size={18} strokeWidth={2} />
+          </div>
+          <div class="hero-stat-text">
             <strong>Return to comfort</strong>
-            A comfortable place after a full day in Kashi
-          </span>
+            <span>AC, quiet nights and clean beds after a full day in Kashi</span>
+          </div>
         </div>
+
         <div class="hero-stat">
-          <i class="hero-stat-icon">
-            <Flame size={20} strokeWidth={1.8} />
-          </i>
-          <span>
+          <div class="hero-stat-icon">
+            <Flame size={18} strokeWidth={2} />
+          </div>
+          <div class="hero-stat-text">
             <strong>Explore with ease</strong>
-            A practical base for discovering Varanasi
-          </span>
+            <span>A practical, welcoming base in the sacred heart</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Booking Enquiry Widget on Right -->
-    <BookingWidget />
+    <!-- Booking Enquiry Widget (Desktop & Tablet) -->
+    <div class="desktop-booking-wrap">
+      <BookingWidget />
+    </div>
   </div>
 
   <a href="#marquee" class="scrollcue" aria-label="Scroll down to begin the story">Scroll to begin</a>
@@ -91,7 +106,7 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
 
 <style>
 .hero {
-  min-height: 100svh;
+  min-height: 100dvh;
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -114,8 +129,8 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(22, 5, 7, 0.95) 0%, rgba(33, 8, 10, 0.76) 38%, rgba(33, 8, 10, 0.22) 68%, rgba(33, 8, 10, 0.65) 100%),
-    linear-gradient(180deg, rgba(16, 4, 5, 0.18), rgba(16, 4, 5, 0.72) 96%);
+    linear-gradient(90deg, rgba(22, 5, 7, 0.95) 0%, rgba(33, 8, 10, 0.78) 40%, rgba(33, 8, 10, 0.28) 70%, rgba(33, 8, 10, 0.65) 100%),
+    linear-gradient(180deg, rgba(16, 4, 5, 0.15) 0%, rgba(16, 4, 5, 0.8) 96%);
   z-index: 2;
 }
 
@@ -193,10 +208,10 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
   z-index: 10;
   width: min(1440px, 92vw);
   margin: 0 auto;
-  padding: 160px 0 76px;
+  padding: 150px 0 76px;
   display: grid;
-  grid-template-columns: 1.05fr 0.65fr;
-  gap: 7vw;
+  grid-template-columns: 1.05fr 0.68fr;
+  gap: 6vw;
   align-items: end;
 }
 
@@ -208,84 +223,100 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
 .kicker {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 12px;
   font-size: 10px;
-  letter-spacing: 4px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
   color: #e6c57b;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-weight: 700;
 }
 
-.kicker::before {
-  content: "";
-  width: 58px;
+.kicker-line {
+  width: 50px;
   height: 1px;
   background: #dcb567;
+  flex-shrink: 0;
 }
 
-.hero h1 {
+.hero-h1 {
   margin: 0;
-  font: 600 clamp(64px, 7vw, 118px) / 0.84 var(--font-serif);
-  letter-spacing: -2px;
+  font: 600 clamp(48px, 6.5vw, 114px) / 0.86 var(--font-serif);
+  letter-spacing: -1.8px;
   color: #ffffff;
 }
 
-.hero h1 em {
+.hero-h1 em {
   font-style: italic;
   font-weight: 400;
   color: #efd08a;
 }
 
+.mobile-break {
+  display: none;
+}
+
 .hero-p {
   max-width: 600px;
   color: #eadccf;
-  line-height: 1.85;
+  line-height: 1.8;
   font-size: 15.5px;
-  margin: 26px 0 32px;
+  margin: 22px 0 28px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
+.hero-cta-btn {
+  height: 52px;
+  padding: 0 26px;
+  font-size: 13.5px;
+  border-radius: 999px;
+}
+
+.hero-wa-btn {
+  height: 52px;
+  padding: 0 22px;
+  font-size: 13.5px;
+  border-radius: 999px;
+}
+
 .hero-stats {
-  display: flex;
-  gap: 26px;
-  flex-wrap: wrap;
-  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 36px;
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .hero-stat {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: flex-start;
-  max-width: 220px;
 }
 
-.hero-stat i {
-  font-style: normal;
+.hero-stat-icon {
   color: #e4bf70;
-  font-size: 20px;
-  line-height: 1.2;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
-.hero-stat span {
-  display: block;
-  color: #ead8c1;
-  font-size: 10.5px;
-  line-height: 1.55;
-}
-
-.hero-stat strong {
+.hero-stat-text strong {
   display: block;
   color: #fff3de;
   font-size: 11.5px;
   margin-bottom: 2px;
+}
+
+.hero-stat-text span {
+  display: block;
+  color: #ead8c1;
+  font-size: 10.5px;
+  line-height: 1.5;
 }
 
 .scrollcue {
@@ -306,43 +337,91 @@ import { Compass, Sparkles, Flame } from 'lucide-astro';
   content: "";
   display: block;
   width: 1px;
-  height: 32px;
+  height: 30px;
   background: linear-gradient(#dfbc70, transparent);
   margin: 8px auto 0;
 }
 
-@media (max-width: 1100px) {
+/* Tablet & Mobile responsive behavior */
+@media (max-width: 1024px) {
   .hero-wrap {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding-top: 140px;
-  }
-}
-
-@media (max-width: 680px) {
-  .hero-wrap {
-    width: 90vw;
-    padding-top: 115px;
+    gap: 32px;
+    padding-top: 120px;
     padding-bottom: 60px;
   }
-  .hero h1 {
-    font-size: clamp(50px, 12vw, 68px);
-    line-height: 0.9;
-    letter-spacing: -1px;
-  }
-  .hero-p {
-    font-size: 14px;
-    margin: 18px 0 24px;
-  }
-  .bells, .kashi-vertical, .scrollcue {
+  .desktop-booking-wrap {
     display: none;
   }
   .hero-stats {
-    flex-direction: column;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
-  .hero-stat {
-    max-width: 100%;
+}
+
+/* Mobile Screens: 360px - 680px */
+@media (max-width: 680px) {
+  .hero {
+    min-height: 100dvh;
+    padding-bottom: 20px;
+  }
+  .hero-media {
+    background-position: center 38%;
+  }
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(20, 5, 7, 0.45) 0%, rgba(20, 5, 7, 0.72) 45%, rgba(20, 5, 7, 0.95) 90%),
+      linear-gradient(90deg, rgba(20, 5, 7, 0.85) 0%, rgba(20, 5, 7, 0.4) 100%);
+  }
+  .hero-wrap {
+    width: 90vw;
+    padding-top: 96px;
+    padding-bottom: 30px;
+  }
+  .kicker {
+    font-size: 9px;
+    letter-spacing: 2.8px;
+    margin-bottom: 14px;
+  }
+  .kicker-line {
+    width: 32px;
+  }
+  .hero-h1 {
+    font-size: clamp(44px, 11.5vw, 56px);
+    line-height: 0.9;
+    letter-spacing: -1px;
+  }
+  .mobile-break {
+    display: inline;
+  }
+  .hero-p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 16px 0 24px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .hero-cta-btn,
+  .hero-wa-btn {
+    width: 100%;
+    height: 52px;
+  }
+  .bells, .kashi-vertical, .scrollcue, .arch-svg {
+    display: none;
+  }
+  .hero-stats {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .hero-stat-text strong {
+    font-size: 11px;
+  }
+  .hero-stat-text span {
+    font-size: 10px;
   }
 }
 </style>

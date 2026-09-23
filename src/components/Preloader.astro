@@ -102,12 +102,21 @@
 </style>
 
 <script>
+  // Fast dismiss: hide immediately when window loads or after max 650ms
+  function dismissLoader() {
+    const loader = document.getElementById('loader');
+    if (loader && !loader.classList.contains('hide')) {
+      loader.classList.add('hide');
+    }
+  }
+
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      const loader = document.getElementById('loader');
-      if (loader) {
-        loader.classList.add('hide');
-      }
-    }, 750);
+    setTimeout(dismissLoader, 450);
   });
+
+  // Fallback safety timeout for slow networks
+  setTimeout(dismissLoader, 1200);
+
+  // Instant dismiss on first user touch/click if ready
+  window.addEventListener('touchstart', dismissLoader, { once: true, passive: true });
 </script>

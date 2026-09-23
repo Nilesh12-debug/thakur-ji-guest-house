@@ -1,6 +1,6 @@
 ---
 // Chapter 02: Why Thakur Ji (Dark Burgundy Sanctuary)
-import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
+import { DoorOpen, Wind, Moon, Sunrise, Calendar, MessageCircle } from 'lucide-astro';
 ---
 
 <section class="story-dark-section" id="why-thakur-ji">
@@ -52,11 +52,13 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
         </div>
 
         <div class="story-actions">
-          <a href="#rooms" class="btn primary">
-            Explore our rooms ✦
+          <a href="#rooms" class="btn primary story-cta-btn">
+            <Calendar size={16} />
+            <span>Explore our rooms ✦</span>
           </a>
-          <button class="btn ghost open-booking-btn" type="button">
-            Check availability
+          <button class="btn ghost story-wa-btn open-booking-btn" type="button">
+            <MessageCircle size={16} />
+            <span>Check availability</span>
           </button>
         </div>
       </div>
@@ -88,7 +90,7 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 .story-dark-section {
   background: #21090b;
   color: #fff2df;
-  padding: 120px 0;
+  padding: 100px 0;
   position: relative;
   overflow: hidden;
 }
@@ -101,8 +103,8 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 }
 
 .story-dark-copy h2 {
-  margin: 12px 0 16px;
-  font: 600 clamp(44px, 4.8vw, 76px) / 0.92 var(--font-serif);
+  margin: 10px 0 16px;
+  font: 600 clamp(38px, 4.8vw, 76px) / 0.92 var(--font-serif);
   color: #fff3df;
   letter-spacing: -1.2px;
 }
@@ -110,28 +112,28 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 .devtext {
   font-family: var(--font-devanagari);
   font-weight: 600;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.4;
   color: #dfb968;
-  margin: 18px 0 22px;
+  margin: 16px 0 20px;
   letter-spacing: 0.5px;
 }
 
 .story-dark-copy .lead {
   color: #d8c3b8;
-  font-size: 15px;
-  line-height: 1.85;
+  font-size: 14.5px;
+  line-height: 1.8;
 }
 
 .story-rhythm {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin: 32px 0 36px;
+  gap: 12px;
+  margin: 28px 0 32px;
 }
 
 .rhythm-item {
-  padding: 20px;
+  padding: 18px;
   border: 1px solid rgba(232, 196, 119, 0.18);
   background: rgba(255, 255, 255, 0.035);
   border-radius: 18px;
@@ -139,7 +141,7 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 }
 
 .rhythm-item:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: rgba(232, 196, 119, 0.4);
   background: rgba(255, 255, 255, 0.06);
 }
@@ -158,31 +160,39 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 
 .rhythm-item b {
   display: block;
-  font: 600 24px var(--font-serif);
+  font: 600 22px var(--font-serif);
   color: #f3dec0;
   margin: 0;
 }
 
 .rhythm-item span {
   display: block;
-  font-size: 11.5px;
+  font-size: 11px;
   line-height: 1.6;
   color: #cbb5a8;
 }
 
 .story-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
+}
+
+.story-cta-btn,
+.story-wa-btn {
+  height: 48px;
+  border-radius: 999px;
+  padding: 0 22px;
+  font-size: 13px;
 }
 
 /* Right Visual */
 .dark-photo-card {
   position: relative;
-  height: 580px;
-  border-radius: 34px;
+  height: 540px;
+  border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
 }
 
 .dark-photo-card img {
@@ -201,73 +211,88 @@ import { DoorOpen, Wind, Moon, Sunrise } from 'lucide-astro';
 .dark-photo-card::after {
   content: "";
   position: absolute;
-  inset: 16px;
+  inset: 14px;
   border: 1px solid rgba(241, 210, 145, 0.3);
-  border-radius: 24px;
+  border-radius: 20px;
   z-index: 2;
   pointer-events: none;
 }
 
 .photo-overlay-tag {
   position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 28px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
   z-index: 3;
-  background: rgba(26, 7, 9, 0.78);
+  background: rgba(26, 7, 9, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(228, 191, 112, 0.3);
-  border-radius: 20px;
-  padding: 18px 22px;
+  border-radius: 18px;
+  padding: 16px 20px;
 }
 
 .tag-title {
   display: block;
-  font-size: 10px;
-  letter-spacing: 3px;
+  font-size: 9.5px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: #dfb968;
   font-weight: 800;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .tag-desc {
   margin: 0;
-  font-size: 12px;
+  font-size: 11.5px;
   line-height: 1.5;
   color: #edd9c8;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
   .story-dark-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
   .dark-photo-card {
-    height: 440px;
+    height: 400px;
   }
 }
 
 @media (max-width: 680px) {
   .story-dark-section {
-    padding: 80px 0;
+    padding: 60px 0;
+  }
+  .story-dark-copy h2 {
+    font-size: clamp(34px, 9vw, 44px);
+    line-height: 0.95;
+  }
+  .devtext {
+    font-size: 17px;
   }
   .story-rhythm {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
-  .devtext {
-    font-size: 18px;
+  .story-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .story-cta-btn,
+  .story-wa-btn {
+    width: 100%;
+    justify-content: center;
+    height: 50px;
   }
   .dark-photo-card {
-    height: 360px;
-    border-radius: 24px;
+    height: 320px;
+    border-radius: 22px;
   }
   .photo-overlay-tag {
-    left: 18px;
-    right: 18px;
-    bottom: 18px;
-    padding: 14px 16px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    padding: 12px 14px;
   }
 }
 </style>

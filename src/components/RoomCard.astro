@@ -1,5 +1,6 @@
 ---
 import type { Room } from '../data/property';
+import { Users, Wind, Wifi, ArrowUpRight } from 'lucide-astro';
 
 interface Props {
   room: Room;
@@ -24,65 +25,86 @@ const { room, index } = Astro.props;
   <div class="room-gradient"></div>
 
   <div class="room-info">
-    <div class="room-no">{room.tagline}</div>
+    <div class="room-header-row">
+      <span class="room-tagline">{room.sublabel}</span>
+      {room.badge && <span class="room-badge">{room.badge}</span>}
+    </div>
+
     <h3 class="room-name">{room.name}</h3>
     
+    <!-- Quick feature pill badges -->
     <div class="room-meta">
-      {room.features.map(f => (
-        <span class="meta-tag">{f}</span>
-      ))}
+      <span class="meta-tag">
+        <Users size={12} />
+        <span>{room.capacity}</span>
+      </span>
+      <span class="meta-tag">
+        <Wind size={12} />
+        <span>AC</span>
+      </span>
+      <span class="meta-tag">
+        <Wifi size={12} />
+        <span>Wi‑Fi</span>
+      </span>
     </div>
 
     {room.description && (
       <p class="room-desc">{room.description}</p>
     )}
 
-    <button 
-      class="room-cta-btn open-booking-btn" 
-      type="button" 
-      data-room={room.name} 
-      aria-label={`Enquire about ${room.name}`}
-    >
-      Enquire Now · Book Stay
-    </button>
+    <!-- Mobile-First Touch CTA Button -->
+    <div class="room-action-row">
+      <button 
+        class="room-cta-btn open-booking-btn" 
+        type="button" 
+        data-room={room.name} 
+        aria-label={`Enquire about ${room.name}`}
+      >
+        <span>Check Room & Book</span>
+        <ArrowUpRight size={16} />
+      </button>
+
+      <a 
+        href={`https://wa.me/919876543210?text=Hello%20Thakur%20Ji%20Guest%20House,%20I%20am%20interested%20in%20booking%20the%20${encodeURIComponent(room.name)}.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="room-wa-quick-btn"
+        aria-label={`Inquire about ${room.name} on WhatsApp`}
+      >
+        <span>WhatsApp</span>
+      </a>
+    </div>
   </div>
 
   <button 
-    class="room-arrow open-booking-btn" 
+    class="room-arrow-desktop open-booking-btn" 
     type="button" 
     data-room={room.name}
     aria-label={`Book ${room.name}`}
   >
     ↗
   </button>
-
-  {index === 0 && (
-    <div class="pattern-corner" aria-hidden="true">
-      <svg viewBox="0 0 100 100" focusable="false">
-        <path d="M50 8c0 24 18 42 42 42-24 0-42 18-42 42 0-24-18-42-42-42 24 0 42-18 42-42Z" />
-      </svg>
-    </div>
-  )}
 </article>
 
 <style>
 .room-card {
   position: relative;
-  min-height: 540px;
-  border-radius: 30px;
+  min-height: 520px;
+  border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 30px 90px rgba(47, 23, 16, 0.12);
+  box-shadow: 0 24px 60px rgba(47, 23, 16, 0.12);
   background: #20080a;
   isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+  scroll-snap-align: start;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .room-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 40px 100px rgba(47, 23, 16, 0.22);
+  transform: translateY(-4px);
+  box-shadow: 0 35px 80px rgba(47, 23, 16, 0.2);
 }
 
 .room-media {
@@ -95,17 +117,17 @@ const { room, index } = Astro.props;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .room-card:hover .room-media img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .room-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 32%, rgba(20, 6, 7, 0.72) 65%, rgba(20, 6, 7, 0.94) 100%);
+  background: linear-gradient(180deg, transparent 35%, rgba(20, 6, 7, 0.75) 68%, rgba(20, 6, 7, 0.95) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -113,20 +135,40 @@ const { room, index } = Astro.props;
 .room-info {
   position: relative;
   z-index: 3;
-  padding: 32px 30px 28px;
+  padding: 28px 24px 24px;
   color: #fff8eb;
 }
 
-.room-no {
-  font-size: 9.5px;
-  letter-spacing: 3px;
+.room-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.room-tagline {
+  font-size: 9px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: #e5c171;
   font-weight: 700;
 }
 
+.room-badge {
+  background: rgba(185, 137, 63, 0.35);
+  border: 1px solid rgba(228, 191, 112, 0.45);
+  color: #f7deb0;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 99px;
+}
+
 .room-name {
-  font: 600 38px/1.1 var(--font-serif);
+  font: 600 34px / 1.1 var(--font-serif);
   margin: 6px 0 10px;
   color: #ffffff;
   letter-spacing: -0.5px;
@@ -136,107 +178,124 @@ const { room, index } = Astro.props;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  font-size: 9.5px;
-  color: #ead9c2;
   margin-bottom: 12px;
 }
 
 .meta-tag {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 4px 10px;
   border-radius: 99px;
+  font-size: 10px;
   font-weight: 600;
+  color: #f4e8d8;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .room-desc {
-  margin: 10px 0 18px;
+  margin: 8px 0 16px;
   font-size: 12px;
-  line-height: 1.7;
+  line-height: 1.65;
   color: #f2e6d2;
-  max-width: 86%;
+  max-width: 90%;
+}
+
+.room-action-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .room-cta-btn {
-  background: transparent;
-  border: 1px solid rgba(231, 197, 122, 0.5);
-  color: #faeed7;
-  padding: 8px 16px;
+  height: 44px;
+  padding: 0 18px;
   border-radius: 99px;
-  font-size: 11px;
+  background: linear-gradient(135deg, var(--wine), var(--wine2));
+  color: #ffffff;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-block;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.room-cta-btn:hover {
-  background: #b9893f;
-  color: #1d080a;
-  border-color: #b9893f;
+.room-cta-btn:active {
+  transform: scale(0.97);
 }
 
-.room-arrow {
+.room-wa-quick-btn {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.room-wa-quick-btn:hover {
+  background: rgba(37, 211, 102, 0.25);
+  border-color: rgba(37, 211, 102, 0.4);
+}
+
+.room-arrow-desktop {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
-  width: 50px;
-  height: 50px;
+  right: 20px;
+  top: 20px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 228, 177, 0.66);
-  background: rgba(24, 7, 9, 0.4);
+  border: 1px solid rgba(255, 228, 177, 0.6);
+  background: rgba(24, 7, 9, 0.45);
   backdrop-filter: blur(8px);
   color: #fff;
   z-index: 4;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
-.room-card:hover .room-arrow {
+.room-card:hover .room-arrow-desktop {
   background: #efcd86;
   color: #5b1118;
   border-color: #efcd86;
-  transform: rotate(-10deg) scale(1.08);
 }
 
-.pattern-corner {
-  position: absolute;
-  inset: auto 18px 18px auto;
-  z-index: 3;
-  width: 84px;
-  height: 84px;
-  opacity: 0.22;
-  pointer-events: none;
-}
-
-.pattern-corner svg {
-  width: 100%;
-  height: 100%;
-}
-
-.pattern-corner path {
-  stroke: #fff1d1;
-  fill: none;
-  stroke-width: 1;
-}
-
-@media (max-width: 680px) {
-  .room-card {
-    min-height: 440px !important;
+@media (max-width: 900px) {
+  .room-arrow-desktop {
+    display: none;
   }
-  .room-name {
-    font-size: 32px;
+  .room-card {
+    min-height: 480px;
+    border-radius: 24px;
   }
   .room-info {
-    padding: 22px 20px;
+    padding: 20px 18px;
+  }
+  .room-name {
+    font-size: 28px;
   }
   .room-desc {
     max-width: 100%;
     font-size: 11.5px;
+  }
+  .room-cta-btn {
+    flex: 1;
+    justify-content: center;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 ---
-// Section 16: Editorial Staggered Gallery Ribbon
+// Section 15 & 16: Mobile-First Staggered Gallery Ribbon with Interactive Lightbox
 ---
 
 <section class="gallery-ribbon" id="gallery">
@@ -8,71 +8,107 @@
       <div class="story-marker">Property Visuals</div>
       <div class="eyebrow">Real spaces · Authentic photography</div>
       <h2>Inside Thakur Ji Guest House</h2>
+      <p class="gallery-sub">Tap any photo to explore in full detail</p>
     </div>
 
-    <div class="gallery-grid">
-      <!-- Figure 1: Premium Room -->
-      <figure class="gallery-item reveal">
-        <picture>
-          <source srcset="/images/premium-room.webp" type="image/webp" />
-          <img 
-            src="/images/premium-room.jpg" 
-            alt="Premium Room private resting comfort at Thakur Ji Guest House" 
-            loading="lazy" 
-            width="1418" 
-            height="1126"
-          />
-        </picture>
-        <figcaption>Quiet private comfort · The pause after the city</figcaption>
-      </figure>
+    <!-- Mobile Swipe Cue -->
+    <div class="mobile-gallery-cue" aria-hidden="true">
+      <span>Swipe property photos</span>
+      <span class="swipe-arrow">→</span>
+    </div>
 
-      <!-- Figure 2: Family Room (Taller Centerpiece) -->
-      <figure class="gallery-item mid reveal">
-        <picture>
-          <source srcset="/images/family-room.webp" type="image/webp" />
-          <img 
-            src="/images/family-room.jpg" 
-            alt="Family Room multi-bed layout at Thakur Ji Guest House" 
-            loading="lazy" 
-            width="1418" 
-            height="1068"
-          />
-        </picture>
-        <figcaption>Space for families & groups · Stay together</figcaption>
-      </figure>
+    <div class="gallery-slider-wrap">
+      <div class="gallery-grid">
+        <!-- Figure 1: Premium Room -->
+        <figure class="gallery-item reveal gallery-trigger" data-img="/images/premium-room.jpg" data-caption="Premium Room · Quiet private comfort and AC sanctuary">
+          <picture>
+            <source srcset="/images/premium-room.webp" type="image/webp" />
+            <img 
+              src="/images/premium-room.jpg" 
+              alt="Premium Room private resting comfort at Thakur Ji Guest House" 
+              loading="lazy" 
+              width="1418" 
+              height="1126"
+            />
+          </picture>
+          <figcaption>Quiet private comfort · The pause after the city</figcaption>
+        </figure>
 
-      <!-- Figure 3: Reception / Arrival -->
-      <figure class="gallery-item reveal">
-        <picture>
-          <source srcset="/images/reception.webp" type="image/webp" />
-          <img 
-            src="/images/reception.jpg" 
-            alt="Warm reception arrival at Thakur Ji Guest House Varanasi" 
-            loading="lazy" 
-            width="1418" 
-            height="944"
-          />
-        </picture>
-        <figcaption>A warm arrival in Kashi · True local hospitality</figcaption>
-      </figure>
+        <!-- Figure 2: Family Room (Taller Centerpiece) -->
+        <figure class="gallery-item mid reveal gallery-trigger" data-img="/images/family-room.jpg" data-caption="Family Room · Spacious multi-bed layout for groups and families">
+          <picture>
+            <source srcset="/images/family-room.webp" type="image/webp" />
+            <img 
+              src="/images/family-room.jpg" 
+              alt="Family Room multi-bed layout at Thakur Ji Guest House" 
+              loading="lazy" 
+              width="1418" 
+              height="1068"
+            />
+          </picture>
+          <figcaption>Space for families & groups · Stay together</figcaption>
+        </figure>
+
+        <!-- Figure 3: Reception / Arrival -->
+        <figure class="gallery-item reveal gallery-trigger" data-img="/images/reception.jpg" data-caption="Reception & Entry · A warm arrival in Kashi with personal assistance">
+          <picture>
+            <source srcset="/images/reception.webp" type="image/webp" />
+            <img 
+              src="/images/reception.jpg" 
+              alt="Warm reception arrival at Thakur Ji Guest House Varanasi" 
+              loading="lazy" 
+              width="1418" 
+              height="944"
+            />
+          </picture>
+          <figcaption>A warm arrival in Kashi · True local hospitality</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Modal -->
+  <div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image preview">✕</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Property photo full preview" />
+      <div id="lightboxCaption" class="lightbox-caption"></div>
     </div>
   </div>
 </section>
 
 <style>
 .gallery-ribbon {
-  padding: 40px 0 120px;
+  padding: 30px 0 100px;
 }
 
 .gallery-header {
-  margin-bottom: 36px;
+  margin-bottom: 28px;
   text-align: center;
 }
 
 .gallery-header h2 {
   margin: 6px 0 0;
-  font: 600 clamp(38px, 4.5vw, 64px) / 1 var(--font-serif);
+  font: 600 clamp(34px, 4.5vw, 64px) / 1 var(--font-serif);
   color: #5d1118;
+}
+
+.gallery-sub {
+  font-size: 13px;
+  color: #8c7368;
+  margin: 8px 0 0;
+}
+
+.mobile-gallery-cue {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #a47c43;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .gallery-grid {
@@ -86,15 +122,16 @@
   margin: 0;
   position: relative;
   overflow: hidden;
-  border-radius: 30px;
-  box-shadow: 0 30px 90px rgba(47, 23, 16, 0.14);
-  height: 440px;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(47, 23, 16, 0.12);
+  height: 420px;
   background: #20080a;
+  cursor: pointer;
 }
 
 .gallery-item.mid {
-  height: 520px;
-  transform: translateY(22px);
+  height: 500px;
+  transform: translateY(20px);
 }
 
 .gallery-item picture,
@@ -102,65 +139,178 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .gallery-item:hover img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .gallery-item figcaption {
   position: absolute;
-  inset: auto 18px 18px;
-  background: rgba(26, 7, 9, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  inset: auto 16px 16px;
+  background: rgba(26, 7, 9, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(242, 211, 147, 0.25);
-  padding: 14px 18px;
-  border-radius: 16px;
+  padding: 12px 16px;
+  border-radius: 14px;
   color: #fff3df;
-  font: 600 14px var(--font-serif);
-  letter-spacing: 0.3px;
+  font: 600 13px var(--font-serif);
   z-index: 2;
-  transition: background 0.3s;
 }
 
-.gallery-item:hover figcaption {
-  background: rgba(26, 7, 9, 0.82);
-  border-color: rgba(242, 211, 147, 0.5);
+/* Lightbox Styles */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(14, 4, 5, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-@media (max-width: 1100px) {
+.gallery-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 10002;
+  transition: background-color 0.2s;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-caption {
+  color: #f7deb0;
+  font-size: 14px;
+  font-family: var(--font-serif);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 1024px) {
   .gallery-grid {
     grid-template-columns: 1fr 1fr;
   }
   .gallery-item.mid {
     transform: none;
-    height: 380px;
     grid-column: span 2;
-  }
-  .gallery-item {
     height: 380px;
   }
 }
 
-@media (max-width: 680px) {
+/* Mobile Scroll-Snap Swipeable Gallery: 360px - 768px */
+@media (max-width: 768px) {
   .gallery-ribbon {
-    padding: 20px 0 80px;
+    padding: 20px 0 60px;
+  }
+  .mobile-gallery-cue {
+    display: flex;
+  }
+  .gallery-slider-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-left: -5vw;
+    margin-right: -5vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 14px;
+  }
+  .gallery-slider-wrap::-webkit-scrollbar {
+    display: none;
   }
   .gallery-grid {
-    grid-template-columns: 1fr;
+    display: flex;
     gap: 14px;
+    width: max-content;
   }
   .gallery-item,
   .gallery-item.mid {
-    height: 320px;
-    grid-column: auto;
+    width: 84vw;
+    max-width: 360px;
+    height: 340px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
     border-radius: 22px;
-  }
-  .gallery-item figcaption {
-    font-size: 12.5px;
-    padding: 10px 14px;
   }
 }
 </style>
+
+<script>
+  // Lightbox controller
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImg = document.getElementById('lightboxImg') as HTMLImageElement | null;
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const triggers = document.querySelectorAll('.gallery-trigger');
+
+  triggers.forEach((item) => {
+    item.addEventListener('click', () => {
+      const src = (item as HTMLElement).dataset.img || '';
+      const caption = (item as HTMLElement).dataset.caption || '';
+      if (lightboxImg) lightboxImg.src = src;
+      if (lightboxCaption) lightboxCaption.textContent = caption;
+      lightbox?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox?.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+</script>

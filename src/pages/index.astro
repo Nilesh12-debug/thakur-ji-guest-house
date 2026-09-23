@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
+import MobileTrustStrip from '../components/MobileTrustStrip.astro';
 import ArrivalStory from '../components/ArrivalStory.astro';
 import WhyThakurJi from '../components/WhyThakurJi.astro';
 import RoomsSection from '../components/RoomsSection.astro';
@@ -17,11 +18,14 @@ import ClosingCTA from '../components/ClosingCTA.astro';
   description="A comfortable stay designed around the experience of Kashi. Clean, quiet rooms, air conditioning, and warm local hospitality for pilgrims, families, and travellers."
 >
   <main id="main-content">
-    <!-- Viewport Hero with Deluxe Room Photo & Booking Widget -->
+    <!-- Viewport Hero with Deluxe Room Photo & Mobile Thumb CTAs -->
     <Hero />
 
     <!-- Cultural Strip Marquee -->
     <Marquee />
+
+    <!-- Quick Mobile Trust Assurance Strip (Google rating, Wi-Fi, AC, Family rooms) -->
+    <MobileTrustStrip />
 
     <!-- Story Chapter 01: Arrival (Varanasi can be intense. Your stay shouldn't be.) -->
     <ArrivalStory />
@@ -29,19 +33,19 @@ import ClosingCTA from '../components/ClosingCTA.astro';
     <!-- Story Chapter 02: Why Thakur Ji (Dark burgundy comfort sanctuary & rhythm cards) -->
     <WhyThakurJi />
 
-    <!-- Story Chapter 03: Rest (Real Deluxe, Premium, and Family rooms) -->
+    <!-- Story Chapter 03: Rest (Swipeable mobile room cards & desktop 3-col grid) -->
     <RoomsSection />
 
     <!-- "Why Stay Here?" Reassurance Interlude -->
     <PromiseSection />
 
-    <!-- Chapter 04: What You Return To (6 Verified Amenities) -->
+    <!-- Chapter 04: What You Return To (6 Verified Amenities with Lucide Icons) -->
     <Amenities />
 
-    <!-- Staggered Editorial Photography Gallery Ribbon -->
+    <!-- Staggered Editorial Photography Gallery Ribbon with Lightbox -->
     <Gallery />
 
-    <!-- Chapter 05: The City (Google Review Trust Card & Varanasi Landmarks) -->
+    <!-- Chapter 05: The City (Google Review Trust Card, Maps CTA & Varanasi Landmarks) -->
     <KashiExperience />
 
     <!-- Cinematic Closing Section: Come for Kashi. Stay for comfort. -->
