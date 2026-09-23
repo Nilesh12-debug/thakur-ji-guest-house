@@ -1,7 +1,7 @@
 ---
 import { property } from '../data/property';
 import GoogleReviewSummary from './GoogleReviewSummary.astro';
-import { Landmark, Flame, Sunset, Train, MapPin, Navigation, Phone, MessageCircle } from 'lucide-astro';
+import { Landmark, Flame, Sunset, Train, Navigation } from 'lucide-astro';
 
 const attractionIcons: Record<string, any> = {
   'kashi-vishwanath': Landmark,
@@ -23,31 +23,16 @@ const attractionIcons: Record<string, any> = {
           We offer the reassurance of a reliable, comfortable sanctuary to return to while you immerse yourself in the living spiritual rhythm of Varanasi.
         </p>
 
-        <!-- Prominent Mobile-First Maps & Contact Navigation Bar -->
-        <div class="mobile-location-actions">
+        <!-- Single Elegant Location Action -->
+        <div class="location-actions">
           <a 
             href={property.mapUrl || "https://maps.google.com/?q=Thakur+Ji+Guest+House+Varanasi"} 
             target="_blank" 
             rel="noopener noreferrer" 
             class="btn primary map-main-btn"
           >
-            <Navigation size={18} />
-            <span>Open in Google Maps ↗</span>
-          </a>
-
-          <a href={`tel:${property.phone}`} class="btn ghost map-sub-btn">
-            <Phone size={17} />
-            <span>Call Host</span>
-          </a>
-
-          <a 
-            href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20can%20you%20share%20your%20exact%20location%20and%20directions?`} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="btn ghost map-sub-btn"
-          >
-            <MessageCircle size={17} />
-            <span>Directions via WhatsApp</span>
+            <Navigation size={17} />
+            <span>Find Us in Varanasi ↗</span>
           </a>
         </div>
       </div>
@@ -69,7 +54,7 @@ const attractionIcons: Record<string, any> = {
                     {place.distance || place.walkingTime ? (
                       <span>{place.distance || place.walkingTime}</span>
                     ) : (
-                      <span>Direct Easy Access</span>
+                      <span>Close to the Experience</span>
                     )}
                   </span>
                 </div>
@@ -109,33 +94,19 @@ const attractionIcons: Record<string, any> = {
   letter-spacing: 0.5px;
 }
 
-.mobile-location-actions {
+.location-actions {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
   margin-top: 24px;
 }
 
 .map-main-btn {
   height: 48px;
-  padding: 0 22px;
+  padding: 0 24px;
   font-size: 13px;
   border-radius: 999px;
-}
-
-.map-sub-btn {
-  height: 48px;
-  padding: 0 18px;
-  font-size: 13px;
-  border-radius: 999px;
-  background: rgba(87, 16, 25, 0.08);
-  border: 1px solid rgba(87, 16, 25, 0.22);
-  color: var(--wine);
-}
-
-.map-sub-btn:hover {
-  background: rgba(87, 16, 25, 0.15);
-  color: var(--wine);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .kashi-grid {
@@ -231,12 +202,10 @@ const attractionIcons: Record<string, any> = {
     padding-top: 60px;
     padding-bottom: 70px;
   }
-  .mobile-location-actions {
-    flex-direction: column;
+  .location-actions {
     width: 100%;
   }
-  .map-main-btn,
-  .map-sub-btn {
+  .map-main-btn {
     width: 100%;
     justify-content: center;
     height: 50px;

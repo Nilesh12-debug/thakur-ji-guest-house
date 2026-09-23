@@ -1,0 +1,357 @@
+---
+import { property } from '../data/property';
+import { Calendar, Users, X, ArrowRight } from 'lucide-astro';
+---
+
+<div class="enquiry-modal-overlay" id="enquiryModalOverlay" role="dialog" aria-modal="true" aria-labelledby="enquiryModalTitle" aria-hidden="true">
+  <div class="enquiry-modal" id="enquiryModal">
+    <!-- Drag Handle indicator for mobile bottom sheet -->
+    <div class="sheet-drag-handle" aria-hidden="true"></div>
+
+    <button type="button" class="modal-close" id="enquiryModalClose" aria-label="Close availability enquiry">
+      <X size={20} />
+    </button>
+    
+    <span class="modal-tag">Thakur Ji Guest House · Varanasi</span>
+    <h3 id="enquiryModalTitle" class="modal-heading">Check Availability</h3>
+    <p class="modal-sub">Share your dates and guest details. We will check our room calendar and respond promptly with rates and availability.</p>
+
+    <form id="availabilityForm" class="enquiry-form" data-whatsapp={property.whatsapp}>
+      <div class="form-row-2">
+        <div class="field">
+          <label for="enquiryCheckin">Check In</label>
+          <input type="date" id="enquiryCheckin" name="checkIn" required />
+        </div>
+        <div class="field">
+          <label for="enquiryCheckout">Check Out</label>
+          <input type="date" id="enquiryCheckout" name="checkOut" required />
+        </div>
+      </div>
+
+      <div class="field" style="margin-top: 14px;">
+        <label for="enquiryGuests">Guests</label>
+        <select id="enquiryGuests" name="guests">
+          <option value="2 Guests">2 Guests (Couple / Friends)</option>
+          <option value="1 Guest">1 Guest (Solo Traveller)</option>
+          <option value="3 Guests">3 Guests</option>
+          <option value="4+ Guests">4+ Guests (Family / Group)</option>
+        </select>
+      </div>
+
+      <div class="field" style="margin-top: 14px;">
+        <label for="enquiryRoom">Preferred Room (Optional)</label>
+        <select id="enquiryRoom" name="room">
+          <option value="Any Available Room">Any Available Room</option>
+          <option value="Deluxe Room">Deluxe Room</option>
+          <option value="Premium Room">Premium Room</option>
+          <option value="Family Room">Family Room</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn primary enquiry-submit-btn">
+        <span>Send Availability Enquiry</span>
+        <ArrowRight size={16} />
+      </button>
+
+      <div class="enquiry-whatsapp-alt">
+        <span>Prefer WhatsApp?</span>
+        <a 
+          id="directWhatsAppEnquiryLink"
+          href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20I%20would%20like%20to%20check%20room%20availability%20for%20my%20stay%20in%20Varanasi.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="wa-subtle-link"
+        >
+          Message us directly →
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+.enquiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(18, 5, 6, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.enquiry-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.enquiry-modal {
+  width: min(520px, 94vw);
+  background: #fffaf3;
+  border: 1px solid rgba(185, 137, 63, 0.38);
+  border-radius: 28px;
+  padding: 36px;
+  position: relative;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.45);
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.enquiry-modal-overlay.active .enquiry-modal {
+  transform: translateY(0) scale(1);
+}
+
+.sheet-drag-handle {
+  display: none;
+  width: 40px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(145, 101, 65, 0.25);
+  margin: 0 auto 16px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: rgba(86, 16, 24, 0.06);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--wine);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--wine);
+  color: #fff;
+}
+
+.modal-tag {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #a47d44;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.modal-heading {
+  margin: 0 0 8px;
+  font: 600 clamp(30px, 5vw, 38px) / 1.05 var(--font-serif);
+  color: var(--wine);
+  letter-spacing: -0.5px;
+}
+
+.modal-sub {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #725b52;
+  margin: 0 0 22px;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field label {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #73584d;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #e7dbc8;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #4f3832;
+  font-size: 13.5px;
+  outline: none;
+  min-height: 48px;
+  transition: border-color 0.2s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #b9893f;
+  box-shadow: 0 0 0 3px rgba(185, 137, 63, 0.12);
+}
+
+.enquiry-submit-btn {
+  width: 100%;
+  margin-top: 22px;
+  min-height: 50px;
+  font-size: 13.5px;
+  border-radius: 999px;
+}
+
+.enquiry-whatsapp-alt {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #8c7368;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.wa-subtle-link {
+  color: #8f6029;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.wa-subtle-link:hover {
+  color: var(--wine);
+}
+
+/* Mobile Bottom Sheet (<= 680px) */
+@media (max-width: 680px) {
+  .enquiry-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .enquiry-modal {
+    width: 100vw;
+    border-radius: 26px 26px 0 0;
+    padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+    max-height: 86vh;
+  }
+  .enquiry-modal-overlay.active .enquiry-modal {
+    transform: translateY(0);
+  }
+  .sheet-drag-handle {
+    display: block;
+  }
+  .modal-close {
+    top: 18px;
+    right: 18px;
+  }
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .modal-heading {
+    font-size: 28px;
+  }
+}
+</style>
+
+<script>
+  // Enquiry Modal Controller
+  const overlay = document.getElementById('enquiryModalOverlay');
+  const closeBtn = document.getElementById('enquiryModalClose');
+  const form = document.getElementById('availabilityForm');
+  const checkinInput = document.getElementById('enquiryCheckin') as HTMLInputElement | null;
+  const checkoutInput = document.getElementById('enquiryCheckout') as HTMLInputElement | null;
+
+  if (checkinInput && checkoutInput) {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const dayAfter = new Date(today);
+    dayAfter.setDate(today.getDate() + 2);
+
+    const formatDate = (d: Date) => d.toISOString().split('T')[0];
+    checkinInput.min = formatDate(today);
+    checkinInput.value = formatDate(tomorrow);
+    checkoutInput.min = formatDate(tomorrow);
+    checkoutInput.value = formatDate(dayAfter);
+
+    checkinInput.addEventListener('change', () => {
+      if (checkinInput.value) {
+        const nextDay = new Date(checkinInput.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        checkoutInput.min = formatDate(nextDay);
+        if (checkoutInput.value <= checkinInput.value) {
+          checkoutInput.value = formatDate(nextDay);
+        }
+      }
+    });
+  }
+
+  function openEnquiryModal(preferredRoom = "") {
+    if (preferredRoom) {
+      const roomSelect = document.getElementById('enquiryRoom') as HTMLSelectElement | null;
+      if (roomSelect) {
+        for (let i = 0; i < roomSelect.options.length; i++) {
+          if (roomSelect.options[i].text.toLowerCase().includes(preferredRoom.toLowerCase())) {
+            roomSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+    overlay?.classList.add('active');
+    overlay?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEnquiryModal() {
+    overlay?.classList.remove('active');
+    overlay?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn?.addEventListener('click', closeEnquiryModal);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeEnquiryModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('active')) {
+      closeEnquiryModal();
+    }
+  });
+
+  // Attach to trigger buttons
+  document.querySelectorAll('.open-enquiry-trigger').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const room = (btn as HTMLElement).dataset.room || "";
+      openEnquiryModal(room);
+    });
+  });
+
+  // Submission -> WhatsApp formatted enquiry
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const checkIn = (document.getElementById('enquiryCheckin') as HTMLInputElement)?.value || '';
+    const checkOut = (document.getElementById('enquiryCheckout') as HTMLInputElement)?.value || '';
+    const guests = (document.getElementById('enquiryGuests') as HTMLSelectElement)?.value || '2 Guests';
+    const room = (document.getElementById('enquiryRoom') as HTMLSelectElement)?.value || 'Any Available Room';
+
+    const message = `Hello Thakur Ji Guest House,\nI would like to check room availability for my stay in Varanasi:\n\n- Check-in: ${checkIn}\n- Check-out: ${checkOut}\n- Guests: ${guests}\n- Preferred room: ${room}\n\nPlease share availability and rates. Thank you!`;
+    const whatsappNum = (form as HTMLElement)?.dataset.whatsapp || '919876543210';
+    const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    closeEnquiryModal();
+  });
+</script>

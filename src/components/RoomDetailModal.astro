@@ -1,0 +1,362 @@
+---
+import { property } from '../data/property';
+import { X, Users, Wind, Wifi, BedDouble, Check } from 'lucide-astro';
+---
+
+<div class="room-detail-modal-overlay" id="roomDetailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailRoomTitle" aria-hidden="true">
+  <div class="room-detail-modal" id="roomDetailModal">
+    <button type="button" class="modal-close" id="roomDetailClose" aria-label="Close room details">
+      <X size={20} />
+    </button>
+
+    <div class="detail-image-wrap">
+      <img id="detailRoomImg" src="" alt="Room detail photo" />
+      <div class="detail-image-gradient"></div>
+      <div class="detail-badge" id="detailRoomSublabel">FOR COUPLES & SHORT STAYS</div>
+    </div>
+
+    <div class="detail-body">
+      <h3 id="detailRoomTitle" class="detail-name">Deluxe Room</h3>
+      <p id="detailRoomDesc" class="detail-desc"></p>
+
+      <div class="detail-specs">
+        <div class="spec-item">
+          <Users size={16} class="spec-icon" />
+          <span id="detailRoomCapacity">2–3 Guests</span>
+        </div>
+        <div class="spec-item">
+          <Wind size={16} class="spec-icon" />
+          <span>Full Climate Control (AC)</span>
+        </div>
+        <div class="spec-item">
+          <Wifi size={16} class="spec-icon" />
+          <span>Free High-Speed Wi‑Fi</span>
+        </div>
+        <div class="spec-item">
+          <BedDouble size={16} class="spec-icon" />
+          <span>Fresh Linens & Attached Bath</span>
+        </div>
+      </div>
+
+      <div class="detail-amenities-list">
+        <span class="amenities-title">Room Features</span>
+        <ul id="detailRoomFeatures" class="features-list"></ul>
+      </div>
+
+      <!-- Subtle, understated bottom check availability trigger -->
+      <div class="detail-action-footer">
+        <span class="footer-quiet-label">Interested in this room?</span>
+        <button type="button" class="detail-enquiry-trigger" id="detailCheckAvailabilityBtn">
+          Check availability →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.room-detail-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(18, 5, 6, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.room-detail-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.room-detail-modal {
+  width: min(580px, 94vw);
+  background: #fffaf3;
+  border: 1px solid rgba(185, 137, 63, 0.35);
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5);
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.room-detail-modal-overlay.active .room-detail-modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  background: rgba(20, 5, 7, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--wine);
+}
+
+.detail-image-wrap {
+  position: relative;
+  height: 280px;
+  background: #20080a;
+}
+
+.detail-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-image-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(20, 5, 7, 0.6) 100%);
+}
+
+.detail-badge {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  background: rgba(26, 7, 9, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(242, 211, 147, 0.3);
+  padding: 4px 12px;
+  border-radius: 99px;
+  color: #f7deb0;
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.detail-body {
+  padding: 26px 28px 30px;
+}
+
+.detail-name {
+  margin: 0 0 8px;
+  font: 600 32px / 1.1 var(--font-serif);
+  color: var(--wine);
+  letter-spacing: -0.5px;
+}
+
+.detail-desc {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #6d544a;
+  margin: 0 0 20px;
+}
+
+.detail-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(185, 137, 63, 0.08);
+  border: 1px solid rgba(185, 137, 63, 0.18);
+  border-radius: 16px;
+  margin-bottom: 22px;
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #49332c;
+  font-weight: 600;
+}
+
+:global(.spec-icon) {
+  color: #b9893f;
+  flex-shrink: 0;
+}
+
+.detail-amenities-list {
+  margin-bottom: 24px;
+}
+
+.amenities-title {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8c6e5e;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.features-list :global(li) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #553e35;
+}
+
+.features-list :global(li::before) {
+  content: "✦";
+  color: #b9893f;
+  font-size: 10px;
+}
+
+.detail-action-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid rgba(185, 137, 63, 0.2);
+}
+
+.footer-quiet-label {
+  font-size: 12.5px;
+  color: #8c7368;
+}
+
+.detail-enquiry-trigger {
+  background: transparent;
+  border: none;
+  color: var(--wine);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s;
+}
+
+.detail-enquiry-trigger:hover {
+  color: #8f6029;
+}
+
+@media (max-width: 600px) {
+  .room-detail-modal {
+    width: 100vw;
+    border-radius: 26px 26px 0 0;
+    max-height: 88vh;
+  }
+  .detail-image-wrap {
+    height: 220px;
+  }
+  .detail-specs {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .detail-body {
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
+</style>
+
+<script>
+  import { property } from '../data/property';
+
+  const overlay = document.getElementById('roomDetailOverlay');
+  const closeBtn = document.getElementById('roomDetailClose');
+  const imgEl = document.getElementById('detailRoomImg') as HTMLImageElement | null;
+  const sublabelEl = document.getElementById('detailRoomSublabel');
+  const titleEl = document.getElementById('detailRoomTitle');
+  const descEl = document.getElementById('detailRoomDesc');
+  const capacityEl = document.getElementById('detailRoomCapacity');
+  const featuresList = document.getElementById('detailRoomFeatures');
+  const checkAvailabilityBtn = document.getElementById('detailCheckAvailabilityBtn');
+
+  let currentRoomName = "";
+
+  function openRoomDetail(roomId: string) {
+    const room = property.rooms.find(r => r.id === roomId || r.name.toLowerCase().includes(roomId.toLowerCase()));
+    if (!room) return;
+
+    currentRoomName = room.name;
+
+    if (imgEl) imgEl.src = room.image;
+    if (sublabelEl) sublabelEl.textContent = room.sublabel;
+    if (titleEl) titleEl.textContent = room.name;
+    if (descEl) descEl.textContent = room.description;
+    if (capacityEl) capacityEl.textContent = room.capacity;
+
+    if (featuresList) {
+      featuresList.innerHTML = room.amenities.map(a => `<li>${a}</li>`).join('');
+    }
+
+    overlay?.classList.add('active');
+    overlay?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeRoomDetail() {
+    overlay?.classList.remove('active');
+    overlay?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn?.addEventListener('click', closeRoomDetail);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeRoomDetail();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('active')) {
+      closeRoomDetail();
+    }
+  });
+
+  // Attach to room card "Explore Room →" triggers
+  document.querySelectorAll('.open-room-detail-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const roomId = (trigger as HTMLElement).dataset.roomId || "";
+      openRoomDetail(roomId);
+    });
+  });
+
+  // From room modal -> opens availability enquiry modal with this room pre-selected
+  checkAvailabilityBtn?.addEventListener('click', () => {
+    closeRoomDetail();
+    const enquiryOverlay = document.getElementById('enquiryModalOverlay');
+    const roomSelect = document.getElementById('enquiryRoom') as HTMLSelectElement | null;
+    if (roomSelect && currentRoomName) {
+      for (let i = 0; i < roomSelect.options.length; i++) {
+        if (roomSelect.options[i].text.toLowerCase().includes(currentRoomName.toLowerCase())) {
+          roomSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    enquiryOverlay?.classList.add('active');
+    enquiryOverlay?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+</script>

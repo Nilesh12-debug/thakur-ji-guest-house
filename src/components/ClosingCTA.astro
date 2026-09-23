@@ -1,6 +1,6 @@
 ---
 import { property } from '../data/property';
-import { Calendar, MessageCircle, Phone } from 'lucide-astro';
+import { ArrowRight } from 'lucide-astro';
 ---
 
 <section class="closing-story" id="book" style="--closing-image: url('/images/deluxe-room.webp'), url('/images/deluxe-room.jpg');">
@@ -17,30 +17,27 @@ import { Calendar, MessageCircle, Phone } from 'lucide-astro';
     </h2>
 
     <p class="closing-copy">
-      Make Thakur Ji Guest House your quiet, dependable sanctuary between the moments you came to experience — the early morning boat ride, the evening aarti, the temple visit and the walk through old Kashi.
+      Make Thakur Ji Guest House your comfortable base between the moments you came to Varanasi to experience.
     </p>
 
-    <!-- Stacked Full-Width CTAs on Mobile -->
+    <!-- Refined Single Primary Conversion + Quiet Secondary Text Link -->
     <div class="closing-actions">
-      <button class="btn primary closing-cta-btn open-booking-btn" type="button">
-        <Calendar size={18} strokeWidth={2} />
-        <span>Book Your Stay ✦</span>
+      <button class="btn primary closing-cta-btn open-enquiry-trigger" type="button">
+        <span>Check Availability</span>
+        <ArrowRight size={16} />
       </button>
 
-      <a 
-        href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House!%20I%20would%20like%20to%20plan%20my%20stay%20in%20Varanasi.`} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn ghost closing-wa-btn"
-      >
-        <MessageCircle size={18} strokeWidth={2} />
-        <span>WhatsApp Us</span>
-      </a>
-
-      <a href={`tel:${property.phone}`} class="btn ghost closing-call-btn">
-        <Phone size={18} strokeWidth={2} />
-        <span>Call Property: {property.phoneDisplay}</span>
-      </a>
+      <div class="closing-secondary-wrap">
+        <span>Prefer to ask first?</span>
+        <a 
+          href={`https://wa.me/${property.whatsapp}?text=Hello%20Thakur%20Ji%20Guest%20House,%20I%20would%20like%20to%20ask%20about%20availability%20and%20rates.`} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="closing-wa-quiet-link"
+        >
+          WhatsApp us →
+        </a>
+      </div>
     </div>
 
     <div class="closing-devanagari" aria-label="Atithi Devo Bhava, Har Har Mahadev">
@@ -122,18 +119,39 @@ import { Calendar, MessageCircle, Phone } from 'lucide-astro';
 
 .closing-actions {
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-.closing-cta-btn,
-.closing-wa-btn,
-.closing-call-btn {
+.closing-cta-btn {
   height: 52px;
-  padding: 0 24px;
-  font-size: 13.5px;
+  padding: 0 32px;
+  font-size: 14px;
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.closing-secondary-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: #d8c2b5;
+}
+
+.closing-wa-quiet-link {
+  color: #dfb968;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.closing-wa-quiet-link:hover {
+  color: #ffffff;
 }
 
 .closing-devanagari {
@@ -158,16 +176,16 @@ import { Calendar, MessageCircle, Phone } from 'lucide-astro';
     font-size: 13.5px;
     margin: 16px auto 26px;
   }
-  .closing-actions {
-    flex-direction: column;
+  .closing-cta-btn {
     width: 100%;
-    gap: 10px;
-  }
-  .closing-cta-btn,
-  .closing-wa-btn,
-  .closing-call-btn {
-    width: 100%;
+    max-width: 320px;
+    justify-content: center;
     height: 52px;
+  }
+  .closing-secondary-wrap {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
   }
   .closing-devanagari {
     font-size: 15px;
